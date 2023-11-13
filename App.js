@@ -1,20 +1,47 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Kirjautuminen from './components/Kirjautuminen';
+import Tulos from './components/Tulos';
+import Asetukset from './components/Asetukset';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+ 
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator
+        sceneContainerStyle={{
+          backgroundColor: 'transparent'
+        }}
+        screenOptions={({ route }) => ({
+          tabBarIcon:
+            ({ focused, color, size }) => {
+              let iconName;
+              if (route.name === 'Kirjautuminen') {
+                iconName = focused
+                  ? 'account-circle'
+                  : 'account-circle-outline';
+              } else if (route.name === 'Tulos') {
+                iconName = focused
+                  ? 'chart-box'
+                  : 'chart-box-outline';
+              } else if (route.name === 'Asetukset') {
+                iconName = focused
+                  ? 'view-list'
+                  : 'view-list-outline';
+              }
+              return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
+            },
+          tabBarActiveTintColor: 'steelblue',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name="Kirjautuminen" component={Kirjautuminen}   />
+        <Tab.Screen name="Tulos" component={Tulos}   />
+        <Tab.Screen name="Asetukset" component={Asetukset}  />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
