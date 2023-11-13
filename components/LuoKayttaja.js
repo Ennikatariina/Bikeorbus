@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import Header from './Header';
 import Footer from './Footer';
-
+import styles from '../style/styles';
 
 export default luoKayttaja = ({ navigation, }) => {
     const [email, setEmail] = useState('');
@@ -21,20 +21,20 @@ export default luoKayttaja = ({ navigation, }) => {
 
                 <Text>Create Account</Text>
 
-                <TextInput
+                <TextInput style={styles.input}
                     placeholder="Sähköposti"
                     value={email}
                     onChangeText={setEmail}
                 />
 
-                <TextInput
+                <TextInput style={styles.input}
                     placeholder="Salasana"
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry
                 />
 
-                <TextInput
+                <TextInput style={styles.input}
                     placeholder="Vahvista salasana"
                     value={confirmPassword}
                     onChangeText={setConfirmPassword}

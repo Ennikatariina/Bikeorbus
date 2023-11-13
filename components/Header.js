@@ -1,12 +1,13 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import styles from '../style/styles';
  
 
 export default function Header() {
   return (
-    <View  >
+    <View style={styles.header} >
       <Text  >
-        Header
+        Tähän tulee meidän logo mahdollisesti
       </Text>
     </View>
   )
