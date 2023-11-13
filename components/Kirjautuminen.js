@@ -10,7 +10,8 @@ export default Kirjautuminen = ({ navigation }) => {
       <>
       <Header />
       <View>
-        <Text>Kirjautuminen Component</Text>
+        <Text>Kirjautuminen</Text>
+      
       </View>
       <Footer />
       </>

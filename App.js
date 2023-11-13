@@ -1,12 +1,16 @@
 import Kirjautuminen from './components/Kirjautuminen';
 import Tulos from './components/Tulos';
 import Asetukset from './components/Asetukset';
+import LuoKayttaja from './components/LuoKayttaja';
+import Aloitus from './components/Aloitus';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
- 
 
 const Tab = createBottomTabNavigator();
+
+
 
 export default function App() {
   return (
@@ -38,6 +42,8 @@ export default function App() {
           tabBarInactiveTintColor: 'gray',
         })}
       >
+        <Tab.Screen name="Aloitus" component={Aloitus}   />
+        <Tab.Screen name="LuoKayttaja" component={LuoKayttaja}   />
         <Tab.Screen name="Kirjautuminen" component={Kirjautuminen}   />
         <Tab.Screen name="Tulos" component={Tulos}   />
         <Tab.Screen name="Asetukset" component={Asetukset}  />
