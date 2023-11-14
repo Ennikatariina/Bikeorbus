@@ -3,17 +3,35 @@ import Tulos from './components/Tulos';
 import Asetukset from './components/Asetukset';
 import LuoKayttaja from './components/LuoKayttaja';
 import Aloitus from './components/Aloitus';
+import Koti from './components/Koti';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator} from '@react-navigation/stack';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-const Tab = createBottomTabNavigator();
 
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 
 export default function App() {
   return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Aloitus" component={Aloitus}   /> 
+        <Stack.Screen name="LuoKayttaja" component={LuoKayttaja}   />
+        <Stack.Screen name="Kirjautuminen" component={Kirjautuminen}   />
+        <Stack.Screen name="Tulos" component={Tulos}   />
+        <Stack.Screen name="Koti" component={Koti}   />
+        <Stack.Screen name="Asetukset" component={Asetukset}  />
+        </Stack.Navigator>
+    </NavigationContainer>
+  );
+ };
+
+
+{/*
     <NavigationContainer>
       <Tab.Navigator
         sceneContainerStyle={{
@@ -42,12 +60,11 @@ export default function App() {
           tabBarInactiveTintColor: 'gray',
         })}
       >
+        
         <Tab.Screen name="Aloitus" component={Aloitus}   />
         <Tab.Screen name="LuoKayttaja" component={LuoKayttaja}   />
         <Tab.Screen name="Kirjautuminen" component={Kirjautuminen}   />
         <Tab.Screen name="Tulos" component={Tulos}   />
         <Tab.Screen name="Asetukset" component={Asetukset}  />
       </Tab.Navigator>
-    </NavigationContainer>
-  );
-}
+    </NavigationContainer>}/*} */}

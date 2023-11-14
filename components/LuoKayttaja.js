@@ -12,6 +12,8 @@ export default LuoKayttaja = ({ navigation, }) => {
 
     const handleCreateAccount = () => {
         console.log('handleCreateAccount', email, password, confirmPassword); 
+        navigation.navigate('Koti');
+
     };
 
     return (

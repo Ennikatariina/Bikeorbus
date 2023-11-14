@@ -2,12 +2,17 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
+
 import Header from './Header';
 import styles from '../style/styles';
 import { Pressable } from 'react-native';
 
-const Aloitus = () => {
-  const navigation = useNavigation();
+
+
+export default Aloitus = ({ navigation }) => {
+ 
+ 
 
 
   // Ekaan sivuun ei välttämättä tarvitse navbaria? Laitetaanko vasta kun kirjaudutaan?
@@ -30,5 +35,3 @@ const Aloitus = () => {
     </View>
   );
 };
-
-export default Aloitus;

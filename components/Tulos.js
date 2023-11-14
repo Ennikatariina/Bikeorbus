@@ -1,17 +1,41 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import Header from './Header';
 import Footer from './Footer';
+import styles from '../style/styles';
 
-export default Kirjautuminen = ({ navigation }) => {
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator} from '@react-navigation/stack';
+
+
+
+
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+
+//Ei vielä vie mihinkään näppäimet
+export default Tulos = ({ navigation }) => {
   return (
-    <>
-    <View>
+   <View>
       <Header />
-      <Text>Tulos komponentti</Text>
+     <Text>Keli kuva</Text>
+     <Text>Säätiedot</Text>
+     <Text>Yhteenveto</Text>
+
+     
+     <Pressable style={styles.pressable}
+     onPress={() => navigation.navigate('Pyoralla')}>
+        <Text style={styles.pressableText}
+        >Pyörällä</Text>
+      </Pressable>
+      <Pressable style={styles.pressable}
+       onPress={() => navigation.navigate('Bussilla')}>
+        <Text style={styles.pressableText}
+        >Bussilla</Text>
+      </Pressable>
     </View>
-    <Footer />
-    </>
   );
 };
 
