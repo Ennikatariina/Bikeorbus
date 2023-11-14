@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import styles from '../style/styles';
 
-export default luoKayttaja = ({ navigation, }) => {
+export default LuoKayttaja = ({ navigation, }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
