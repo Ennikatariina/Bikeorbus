@@ -14,4 +14,3 @@ export const signUp = async(email, password)=> {
         Alert.alert("Registeröityminen ei onnistunut")
     }
 }
-//sydgf
