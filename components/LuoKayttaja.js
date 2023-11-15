@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import styles from '../style/styles';
 import { signUp } from '../auth/signUp';
-import {auth} from '../firebase/firebaseConfig'
+import {auth} from '../firebaseConfig'
 import { onAuthStateChanged } from '@firebase/auth';
 
 export default LuoKayttaja = ({ navigation, }) => {

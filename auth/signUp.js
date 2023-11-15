@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import {auth, db, USERS_REF} from '../firebase/firebaseConfig'
+import {auth, db, USERS_REF} from '../firebaseConfig'
 import { Alert } from "react-native";
 
 export const signUp = async(email, password)=> {
