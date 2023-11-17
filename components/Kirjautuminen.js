@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, TextInput, Button } from 'react-native';
+import { View, Text, Pressable, TextInput, Button,Alert } from 'react-native';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import Header from './Header';
 import Footer from './Footer';
@@ -15,10 +15,10 @@ export default Kirjautuminen = ({ navigation }) => {
 
   const handlePress= ()=>{
     if (!email){
-        Alert.alert('Email is required')
+        Alert.alert('Syötä sähköposti')
     }
     else if (!password){
-        Alert.alert('Password is required')
+        Alert.alert('Syötä salasana')
     }
     else{
         logIn(email, password)
