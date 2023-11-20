@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -7,13 +7,12 @@ import { useNavigation } from '@react-navigation/native';
 import Header from './Header';
 import styles from '../style/styles';
 import { Pressable } from 'react-native';
+import Kirjautuminen from './Kirjautuminen';
 
 
 
 export default Aloitus = ({ navigation }) => {
  
- 
-
 
   // Ekaan sivuun ei välttämättä tarvitse navbaria? Laitetaanko vasta kun kirjaudutaan?
   return (

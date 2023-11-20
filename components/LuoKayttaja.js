@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert } from 'react-native';
+import { View, Text, TextInput,Alert, Pressable } from 'react-native';
 import Header from './Header';
 import Footer from './Footer';
-import styles from '../style/styles';
+import { formStyles } from '../style/formStyles';
 import { signUp } from '../auth/signUp';
 import {auth} from '../firebaseConfig'
 import { onAuthStateChanged } from '@firebase/auth';
@@ -39,40 +39,38 @@ export default LuoKayttaja = ({ navigation, }) => {
     };
 
     return (
-        <>
-            <View>
-                <Header />
+        <View >
+            <Header />
+            <View style={formStyles.container}>
+                <Text style={formStyles.formText}>Luo käyttäjä</Text>
 
-                <Text>Create Account</Text>
-
-                <TextInput style={styles.input}
+                <TextInput style={formStyles.input}
                     placeholder="Sähköposti"
                     value={email}
                     onChangeText={setEmail}
                 />
 
-                <TextInput style={styles.input}
+                <TextInput style={formStyles.input}
                     placeholder="Salasana"
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry
                 />
 
-                <TextInput style={styles.input}
+                <TextInput style={formStyles.input}
                     placeholder="Vahvista salasana"
                     value={confirmPassword}
                     onChangeText={setConfirmPassword}
                     secureTextEntry
                 />
-
-                <Button
-                    title="Luo käyttäjä"
-                    onPress={handleCreateAccount}
-                />
+                <Pressable style={formStyles.pressable} onPress={handleCreateAccount}>
+                    <Text style={formStyles.pressableText}>Luo käyttäjä</Text>
+                </Pressable>
+               
             </View>
             <Footer />
-        </>
-    );
+        </View>
+);
 };
 
 

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, TextInput, Button,Alert } from 'react-native';
+import { View, Text, Pressable, TextInput, Button, Alert, SafeAreaView} from 'react-native';
 import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import Header from './Header';
 import Footer from './Footer';
-import styles from '../style/styles';
 import { logIn } from '../auth/login';
 import { onAuthStateChanged } from 'firebase/auth'
 import {auth} from '../firebaseConfig'
+import { formStyles } from '../style/formStyles';
+
 
 export default Kirjautuminen = ({ navigation }) => {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -23,7 +23,6 @@ export default Kirjautuminen = ({ navigation }) => {
     else{
         logIn(email, password)
         onAuthStateChanged(auth, (user)=>{
-          console.log(user.email)
             if(user){
                 navigation.navigate('Koti', {userUid: user.uid})
                 setEmail('')
@@ -34,32 +33,31 @@ export default Kirjautuminen = ({ navigation }) => {
 }
 
   return (
-    <>
-    <Header />
-    <View>
-      <Text>Kirjautuminen</Text>
+    <SafeAreaView>
+        <Header/>
+    <View style={formStyles.container}>
+      <Text style={formStyles.formText}>Kirjaudu sisään</Text>
 
-      <TextInput style={styles.input}
+      <TextInput style={formStyles.input}
         placeholder="Sähköposti"
         value={email}
         onChangeText={setEmail}
       />
 
-      <TextInput style={styles.input}
+      <TextInput style={formStyles.input}
         placeholder="Salasana"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
 
-      <Button
-        title="Kirjaudu"
-        onPress={handlePress}
-       />
+      <Pressable style={formStyles.pressable} onPress={handlePress}>
+        <Text style={formStyles.pressableText}>Kirjaudu</Text>
+      </Pressable>
 
     </View>
     <Footer />
-    </>
+    </SafeAreaView>
   );
   
   };
