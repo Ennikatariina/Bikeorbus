@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
-import{buttonColor} from './colors';
+import{colorList} from './colors';
 
 export const buttonStyles = StyleSheet.create({
     button: {
-      backgroundColor: buttonColor,
+      backgroundColor: colorList.buttonColor,
       borderRadius: 5,
       borderWidth: 1,
-      borderColor: buttonColor,
+      borderColor: colorList.buttonColor,
     },
     pressable: {
       height: 60, 
@@ -14,9 +14,9 @@ export const buttonStyles = StyleSheet.create({
       padding: 5,
       margin: 10,
       borderRadius: 5,
-      backgroundColor: buttonColor,
+      backgroundColor: colorList.buttonColor,
       borderWidth: 1,
-      borderColor: buttonColor,
+      borderColor: colorList.buttonColor,
       justifyContent: 'center',
       alignItems: 'center',
     
