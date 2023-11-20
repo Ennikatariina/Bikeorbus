@@ -62,7 +62,7 @@ export default StyleSheet.create({
         padding: 5,
         margin: 10,
         borderRadius: 5,
-        backgroundColor: 'teal',
+        backgroundColor: '#008080',
         borderWidth: 1,
         borderColor: 'teal',
         justifyContent: 'center',

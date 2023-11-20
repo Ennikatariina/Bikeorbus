@@ -26,6 +26,8 @@ export default Kirjautuminen = ({ navigation }) => {
           console.log(user.email)
             if(user){
                 navigation.navigate('Koti', {userUid: user.uid})
+                setEmail('')
+                setPassword('')
             }
         })
     }
