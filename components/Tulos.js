@@ -10,11 +10,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator} from '@react-navigation/stack';
 import { logOut } from '../auth/logOut';
+import * as geolib from 'geolib';
+
 
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
+let lahinkamera = null;
+let latlonkoordinaatit = [];
 export default Tulos = ({ navigation }) => {
   const [weatherImage, setWeatherImage] = useState(null);
   
@@ -24,22 +27,33 @@ export default Tulos = ({ navigation }) => {
   useEffect(() => {
     const fetchLatestWeatherImage = async () => {
       try {
-        const response = await axios.get('https://tie.digitraffic.fi/api/weathercam/v1/stations/C12614');
-        const imageUrl = response.data.properties.presets[0].imageUrl;
-        if (response.data.properties.presets[0].imageUrl) {
-          setWeatherImage(response.data.properties.presets[0].imageUrl);
-          console.log('Viimeisin kelikuva: ', imageUrl);
+        const response = await axios.get('https://tie.digitraffic.fi/api/weathercam/v1/stations');
+        if (response.data && response.data.features && Array.isArray(response.data.features)) {
+          let latlonkoordinaatit = [];
+      
+          response.data.features.forEach(station => {
+            const coordinates = station.geometry.coordinates.slice(0, 2);
+            //console.log('Coordinates: ', coordinates);
+            latlonkoordinaatit.push(coordinates);
+      
+            const presets = station.properties.presets;
+            // Access other properties of each station as needed
+          });
+          //console.log(latlonkoordinaatit);
+          lahinkamera = geolib.findNearest({ latitude: 65.01236, longitude: 25.46816 }, latlonkoordinaatit);
+          console.log(lahinkamera);
+          // Further processing or rendering based on the obtained coordinates
         } else {
-          console.log('Kelikuvaa ei saatavilla');
+          console.log('Invalid or unexpected API response structure');
         }
       } catch (error) {
-        console.error('Virhe haettaessa kelikuvaa: ', error);
+        console.error('Error fetching weather image: ', error);
       }
     };
-
     fetchLatestWeatherImage();
-  }, []); 
+    console.log(lahinkamera);
 
+  }, []);
 
   return (
     <SafeAreaView>
