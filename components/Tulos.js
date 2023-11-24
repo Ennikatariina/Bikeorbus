@@ -6,6 +6,7 @@ import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
 import styles from '../style/styles';
+import colors from '../style/colors';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
