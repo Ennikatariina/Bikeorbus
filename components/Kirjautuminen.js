@@ -9,9 +9,11 @@ import {auth} from '../firebaseConfig'
 import { formStyles } from '../style/formStyles';
 
 
+
 export default Kirjautuminen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+ 
 
   const handlePress= ()=>{
     if (!email){
@@ -23,10 +25,14 @@ export default Kirjautuminen = ({ navigation }) => {
     else{
         logIn(email, password)
         onAuthStateChanged(auth, (user)=>{
+          console.log("##########", user)
             if(user){
                 navigation.navigate('Koti', {userUid: user.uid})
                 setEmail('')
                 setPassword('')
+            }
+            else{
+              Alert.alert("Et ole kirjautunut sisään")
             }
         })
     }

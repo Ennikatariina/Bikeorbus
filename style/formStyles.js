@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { color1, color2, color3, color4, color5, inputBackgroundcolor } from './colors';
+import { colorList } from './colors';
 import {buttonStyles} from '../style/buttonstyles'
 
 export const formStyles = StyleSheet.create({
     container:{
-        backgroundColor:color1,
+        backgroundColor:colorList.primary,
         alignItems: 'center',
         margin:10,
         borderRadius:8,
@@ -22,7 +22,7 @@ export const formStyles = StyleSheet.create({
         borderRadius: 10,
         color: 'black',
         fontWeight: 'bold',
-        backgroundColor: inputBackgroundcolor,
+        backgroundColor: colorList.inputBackgroundcolor,
         borderWidth: 1,
         borderColor: 'gray',
         margin:5
