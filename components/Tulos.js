@@ -20,6 +20,7 @@ let lahinkamera = null;
 let latlonkoordinaatit = [];
 export default Tulos = ({ navigation }) => {
   const [weatherImage, setWeatherImage] = useState(null);
+
   
 
 
@@ -28,21 +29,39 @@ export default Tulos = ({ navigation }) => {
     const fetchLatestWeatherImage = async () => {
       try {
         const response = await axios.get('https://tie.digitraffic.fi/api/weathercam/v1/stations');
+        
         if (response.data && response.data.features && Array.isArray(response.data.features)) {
           let latlonkoordinaatit = [];
-      
           response.data.features.forEach(station => {
             const coordinates = station.geometry.coordinates.slice(0, 2);
-            //console.log('Coordinates: ', coordinates);
-            latlonkoordinaatit.push(coordinates);
-      
-            const presets = station.properties.presets;
-            // Access other properties of each station as needed
+            latlonkoordinaatit.push({ coordinates, stationId: station.id });
           });
-          //console.log(latlonkoordinaatit);
-          lahinkamera = geolib.findNearest({ latitude: 65.01236, longitude: 25.46816 }, latlonkoordinaatit);
-          console.log(lahinkamera);
-          // Further processing or rendering based on the obtained coordinates
+          
+          const nearestStation = geolib.findNearest({ latitude: 67.01236, longitude: 10.46816 }, latlonkoordinaatit);
+          console.log('Nearest Station ID: ', nearestStation.stationId); // Change nearestStation.key to nearestStation.stationId
+        
+          const matchingStation = response.data.features.find(station => station.properties.id === nearestStation.stationId);
+          const response2 = await axios.get('https://tie.digitraffic.fi/api/weathercam/v1/stations/' + matchingStation.properties.id );
+
+          console.log('Matching Station: ', matchingStation);
+          const stationId = matchingStation.properties.id;
+          if (matchingStation) {
+            console.log('Matching Station: ', matchingStation); // Log the entire matching station object
+            const presets = matchingStation.properties.presets;
+            console.log('Presets: ', presets);
+            
+            const imageUrl = response2.data.properties.presets[0].imageUrl;
+            console.log('Matching Image URL: ', imageUrl);
+          
+            if (imageUrl) {
+              // Further processing or rendering based on the obtained imageUrl
+              setWeatherImage(imageUrl);
+            } else {
+              console.log('No matching image URL found');
+            }
+          } else {
+            console.log('No matching station found');
+          }
         } else {
           console.log('Invalid or unexpected API response structure');
         }
@@ -51,8 +70,6 @@ export default Tulos = ({ navigation }) => {
       }
     };
     fetchLatestWeatherImage();
-    console.log(lahinkamera);
-
   }, []);
 
   return (
@@ -72,7 +89,7 @@ export default Tulos = ({ navigation }) => {
           <Text style={styles.pressableText}>Bussilla</Text>
         </Pressable>
         <Pressable style={styles.pressable} onPress={logOut}>
-          <Text style={styles.pressableText}>Kirjaudu ulos</Text>
+          <Text style={styles.pressableText}>Kirjaudu  ulos</Text>
         </Pressable>
       </ScrollView>
     </SafeAreaView>
