@@ -33,7 +33,13 @@ export default StyleSheet.create({
         marginBottom: 15,
         backgroundColor: 'lightblue',
         flexDirection: 'row',
-        height: 50,
+        alignItems: 'center', 
+        height: 100, 
+      },
+      logo: {
+        width: 80, 
+        height: 80, 
+        marginLeft: 5, 
       },
       etusivuText: {
         fontSize: 30,

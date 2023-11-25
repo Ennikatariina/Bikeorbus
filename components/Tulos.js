@@ -77,8 +77,6 @@ export default Tulos = ({ navigation }) => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Header />
-
         <Position />
         <Text>Keli kuva</Text>
         <Image source={{ uri: weatherImage }} style={{ width: 200, height: 200 }} />

@@ -4,7 +4,7 @@ import Asetukset from './components/Asetukset';
 import LuoKayttaja from './components/LuoKayttaja';
 import Aloitus from './components/Aloitus';
 import Koti from './components/Koti';
-
+import Header from './components/Header';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator} from '@react-navigation/stack';
@@ -19,6 +19,8 @@ const Stack = createStackNavigator();
 export default function App() {
 
   return (
+    <>
+    <Header />
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Aloitus" component={Aloitus}   /> 
@@ -29,6 +31,7 @@ export default function App() {
         <Stack.Screen name="Asetukset" component={Asetukset}  />
         </Stack.Navigator>
     </NavigationContainer>
+    </>
   );
  };
 
