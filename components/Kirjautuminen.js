@@ -4,18 +4,18 @@ import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunit
 import Header from './Header';
 import Footer from './Footer';
 import { logIn } from '../auth/login';
-import { onAuthStateChanged } from 'firebase/auth'
-import {auth} from '../firebaseConfig'
 import { formStyles } from '../style/formStyles';
+import {auth, authListener} from '../auth/authManager'
+import { onAuthStateChanged } from 'firebase/auth'
+
 
 
 
 export default Kirjautuminen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
- 
 
-  const handlePress= ()=>{
+  const handlePress= async()=>{
     if (!email){
         Alert.alert('Syötä sähköposti')
     }
@@ -23,18 +23,9 @@ export default Kirjautuminen = ({ navigation }) => {
         Alert.alert('Syötä salasana')
     }
     else{
-        logIn(email, password)
-        onAuthStateChanged(auth, (user)=>{
-          console.log("##########", user)
-            if(user){
-                navigation.navigate('Koti', {userUid: user.uid})
-                setEmail('')
-                setPassword('')
-            }
-            else{
-              Alert.alert("Et ole kirjautunut sisään")
-            }
-        })
+        await logIn(email, password)
+        setEmail('')
+        setPassword('')
     }
 }
 

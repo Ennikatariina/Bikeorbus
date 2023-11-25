@@ -13,7 +13,7 @@ export default LuoKayttaja = ({ navigation, }) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleCreateAccount = () => {
+    const handleCreateAccount = async() => {
         if (!email){
             Alert.alert("Syötä sähköposti")
         }
@@ -28,12 +28,10 @@ export default LuoKayttaja = ({ navigation, }) => {
             Alert.alert("Salasanat eivät täsmää")
         }
         else{
-            signUp(email, password)
-            onAuthStateChanged(auth, (user)=>{
-                if (user){
-                    navigation.navigate('Koti', {userUid:user.uid});
-                }
-            })
+            await signUp(email, password)
+            setEmail('')
+            setPassword('')
+            setConfirmPassword('')
         }
         console.log('handleCreateAccount', email, password, confirmPassword); 
     };

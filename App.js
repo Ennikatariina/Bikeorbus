@@ -11,14 +11,16 @@ import { createStackNavigator} from '@react-navigation/stack';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 
 export default function App() {
+
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Aloitus" component={Aloitus}   /> 
         <Stack.Screen name="LuoKayttaja" component={LuoKayttaja}   />
         <Stack.Screen name="Kirjautuminen" component={Kirjautuminen}   />
