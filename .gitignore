@@ -36,3 +36,6 @@ yarn-error.*
 
 # Firebase configuration file
 firebaseConfig.js
+
+# OpenWeather configuration file
+openweatherConfig.js
