@@ -14,6 +14,8 @@ import { logOut } from '../auth/logOut';
 import * as geolib from 'geolib';
 import { onAuthStateChanged } from 'firebase/auth'
 import {auth} from '../firebaseConfig'
+import Position from './Paikannus';
+import Saa from './Saa';
 
 
 
@@ -77,9 +79,8 @@ export default Tulos = ({ navigation }) => {
       <ScrollView>
         <Header />
 
+        <Position />
         <Text>Keli kuva</Text>
-        <Text>Säätiedot</Text>
-        <Text>Yhteenveto</Text>
         <Image source={{ uri: weatherImage }} style={{ width: 200, height: 200 }} />
 
         <Pressable style={styles.pressable} onPress={() => navigation.navigate('Pyoralla')}>
