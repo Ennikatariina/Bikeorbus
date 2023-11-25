@@ -12,6 +12,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { logOut } from '../auth/logOut';
 import * as geolib from 'geolib';
+import { onAuthStateChanged } from 'firebase/auth'
+import {auth} from '../firebaseConfig'
 
 
 
@@ -19,8 +21,6 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 export default Tulos = ({ navigation }) => {
   const [weatherImage, setWeatherImage] = useState(null);
-
-
 
 
   // Haetaan kelikuvan url. Tulevaisuudessa luodaan url haku funktio, joka hakee urlin sijainnnin perusteella. Presets[0] on kelikameroista paikan ensimmäinen ja se on ilmaistu oliona. 
@@ -65,6 +65,13 @@ export default Tulos = ({ navigation }) => {
     fetchLatestWeatherImage();
   }, []);
 
+
+  //LOGOUT HANDLEPRESS, tämä pitää siirtää, kun tiedetään logout napin oikea paikka
+  const handlePress= async()=>{
+    await logOut()
+    
+  }
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -81,7 +88,7 @@ export default Tulos = ({ navigation }) => {
         <Pressable style={styles.pressable} onPress={() => navigation.navigate('Bussilla')}>
           <Text style={styles.pressableText}>Bussilla</Text>
         </Pressable>
-        <Pressable style={styles.pressable} onPress={logOut}>
+        <Pressable style={styles.pressable} onPress={handlePress}>
           <Text style={styles.pressableText}>Kirjaudu  ulos</Text>
         </Pressable>
       </ScrollView>
