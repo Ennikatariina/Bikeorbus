@@ -9,7 +9,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator} from '@react-navigation/stack';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-
+import Bussilla from './components/Bussilla';
+import Pyoralla from './components/Pyoralla';
+import Footer from './components/Footer';
 
 
 const Tab = createBottomTabNavigator();
@@ -29,8 +31,11 @@ export default function App() {
         <Stack.Screen name="Tulos" component={Tulos}   />
         <Stack.Screen name="Koti" component={Koti}   />
         <Stack.Screen name="Asetukset" component={Asetukset}  />
+        <Stack.Screen name="Bussilla" component={Bussilla}  />
+        <Stack.Screen name="Pyoralla" component={Pyoralla}  />
         </Stack.Navigator>
     </NavigationContainer>
+    <Footer />
     </>
   );
  };

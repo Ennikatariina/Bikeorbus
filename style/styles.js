@@ -1,6 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  footer: {
+    backgroundColor: 'lightblue',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
     aloitus: {
         backgroundColor: '#fff',
         alignItems: 'center',
@@ -31,6 +36,7 @@ export default StyleSheet.create({
       header: {
         marginTop: 30,
         marginBottom: 15,
+        marginRight: 15,
         backgroundColor: 'lightblue',
         flexDirection: 'row',
         alignItems: 'center', 
@@ -39,7 +45,7 @@ export default StyleSheet.create({
       logo: {
         width: 80, 
         height: 80, 
-        marginLeft: 5, 
+        marginRight: 5, 
       },
       etusivuText: {
         fontSize: 30,
@@ -72,5 +78,19 @@ export default StyleSheet.create({
         fontSize: 16,  
         fontWeight: 'bold',  
       },
-
+      container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      centered: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      label: {
+        fontWeight: 'bold',
+        marginTop: 10,
+      }
 });

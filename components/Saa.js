@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
-import { StyleSheet, Text, Image } from 'react-native';
+import {  Text, Image } from 'react-native';
 import { API_URL, API_KEY, ICON_URL } from '../openweatherConfig';
-
+import styles from '../style/styles';
 
 export default function Saa({latitude,longitude}) {
   const [temp,setTemp] = useState(0);
@@ -47,10 +47,3 @@ export default function Saa({latitude,longitude}) {
     </>
   )
 }
-
-const styles = StyleSheet.create({
-  label: {
-    fontWeight: 'bold',
-    marginTop: 10,
-  }
-});
