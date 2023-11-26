@@ -38,7 +38,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center', 
         height: 100,  
-        marginTop: Platform.OS === 'ios' ? 20 : 0,       
+        //marginTop: Platform.OS === 'ios' ? 20 : 0,       
       },
       logo: {
         width: 440, 
