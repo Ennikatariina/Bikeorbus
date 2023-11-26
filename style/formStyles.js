@@ -1,37 +1,48 @@
 import { StyleSheet } from 'react-native';
 import { colorList } from './colors';
-import {buttonStyles} from '../style/buttonstyles'
+import { buttonStyles } from '../style/buttonstyles'
 
 export const formStyles = StyleSheet.create({
-    container:{
-        backgroundColor:colorList.primary,
-        alignItems: 'center',
-        margin:10,
-        borderRadius:8,
-        padding:8
+  container: {
+    backgroundColor: 'white',
+    alignItems: 'center',
+    margin: 10,
+    borderRadius: 8,
+    padding: 8,
+    borderRadius: 10,
+    marginTop: 50,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
     },
-    formText:{
-        fontSize:22,
-        margin:5
-    },
-    input: {
-        fontSize: 18,
-        width: '80%',
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        borderRadius: 10,
-        color: 'black',
-        fontWeight: 'bold',
-        backgroundColor: colorList.inputBackgroundcolor,
-        borderWidth: 1,
-        borderColor: 'gray',
-        margin:5
-      },
-      pressable: {
-        ...buttonStyles.pressable
-      },
-      pressableText:{
-        ...buttonStyles.pressableText
-      }
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
+  },
+  formText: {
+    fontSize: 22,
+    margin: 5
+  },
+  input: {
+    fontSize: 18,
+    width: '80%',
+    fontSize: 18,
+    padding: 10,
+    color: 'black',
+    marginBottom: 30,
+    borderBottomColor: 'grey',
+    borderBottomWidth: 2,
+    backgroundColor: colorList.inputBackgroundcolor,
+    borderRadius: 5,
+    borderColor: 'gray',
+    margin: 5
+  },
+  pressable: {
+    ...buttonStyles.pressable
+  },
+  pressableText: {
+    ...buttonStyles.pressableText
+  }
 
 })
