@@ -31,20 +31,17 @@ export default StyleSheet.create({
         color: 'black',
         fontWeight: 'bold',
          textAlign: 'center',
-      },
-      
+      },      
       header: {
-        marginTop: 30,
         marginBottom: 15,
         marginRight: 15,
-        backgroundColor: 'lightblue',
         flexDirection: 'row',
         alignItems: 'center', 
-        height: 100, 
+        height: 100,         
       },
       logo: {
-        width: 80, 
-        height: 80, 
+        width: 440, 
+        height: 100, 
         marginRight: 5, 
       },
       etusivuText: {
