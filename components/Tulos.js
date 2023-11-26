@@ -13,6 +13,7 @@ import {auth} from '../firebaseConfig'
 import Position from './Paikannus';
 import {Paikka} from './KayttajaPaikannus'
 
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -101,7 +102,7 @@ export default Tulos = ({ navigation }) => {
       <ScrollView>
         <Position />
         <Text>Keli kuva</Text>
-        <Image source={{ uri: weatherImage }} style={{ width: 400, height: 200 }} />
+        <Image source={{ uri: weatherImage }} style={{ width: 440, height: 200 }} />
         <Pressable style={styles.pressable} onPress={() => navigation.navigate('Pyoralla')}>
           <Text style={styles.pressableText}>Pyörällä</Text>
         </Pressable>

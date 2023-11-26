@@ -8,9 +8,6 @@ import { formStyles } from '../style/formStyles';
 import {auth, authListener} from '../auth/authManager'
 import { onAuthStateChanged } from 'firebase/auth'
 
-
-
-
 export default Kirjautuminen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

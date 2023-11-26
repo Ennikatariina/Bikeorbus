@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 export default StyleSheet.create({
   footer: {
@@ -37,7 +37,8 @@ export default StyleSheet.create({
         marginRight: 15,
         flexDirection: 'row',
         alignItems: 'center', 
-        height: 100,         
+        height: 100,  
+        marginTop: Platform.OS === 'ios' ? 20 : 0,       
       },
       logo: {
         width: 440, 

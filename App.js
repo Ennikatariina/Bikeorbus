@@ -13,7 +13,6 @@ import Bussilla from './components/Bussilla';
 import Pyoralla from './components/Pyoralla';
 import Footer from './components/Footer';
 
-
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 

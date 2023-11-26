@@ -4,7 +4,6 @@ import Header from './Header';
 import Footer from './Footer';
 import Kirjautuminen from './Kirjautuminen';
 import Asetukset from './Asetukset';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator} from '@react-navigation/stack';
