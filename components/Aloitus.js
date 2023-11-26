@@ -14,7 +14,6 @@ export default Aloitus = ({ navigation }) => {
   // Ekaan sivuun ei välttämättä tarvitse navbaria? Laitetaanko vasta kun kirjaudutaan?
   return (
     <View style={styles.aloitus}>
-      <Header />
       <Text style={styles.etusivuText}
       >Tervetuloa Bikeorbus sovellukseen!</Text>
       <Pressable style={styles.pressable}
