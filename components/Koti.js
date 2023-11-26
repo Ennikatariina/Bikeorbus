@@ -40,8 +40,7 @@ export default Koti = ({ navigation }) => {
       tabBarInactiveTintColor: 'gray',
     })}
     >
-    <Tab.Screen name="Tulos" component={Tulos}   />
-    
+    <Tab.Screen name="Tulos" component={Tulos}   />  
     <Tab.Screen name="Asetukset" component={Asetukset}  />
   </Tab.Navigator>
   );

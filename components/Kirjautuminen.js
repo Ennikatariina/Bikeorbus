@@ -31,7 +31,6 @@ export default Kirjautuminen = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-        <Header/>
     <View style={formStyles.container}>
       <Text style={formStyles.formText}>Kirjaudu sisään</Text>
 
@@ -53,7 +52,6 @@ export default Kirjautuminen = ({ navigation }) => {
       </Pressable>
 
     </View>
-    <Footer />
     </SafeAreaView>
   );
   
