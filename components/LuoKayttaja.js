@@ -37,6 +37,8 @@ export default LuoKayttaja = ({ navigation, }) => {
     };
 
     return (
+        <>
+        <Header />
         <View >
             <View style={formStyles.container}>
                 <Text style={formStyles.formText}>Luo käyttäjä</Text>
@@ -66,6 +68,7 @@ export default LuoKayttaja = ({ navigation, }) => {
                
             </View>
         </View>
+        </>
 );
 };
 

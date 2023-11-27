@@ -21,7 +21,6 @@ export default function App() {
 
   return (
     <>
-    <Header />
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Aloitus" component={Aloitus}   /> 

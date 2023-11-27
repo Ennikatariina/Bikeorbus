@@ -14,6 +14,8 @@ export default Aloitus = ({ navigation }) => {
   
   // Ekaan sivuun ei välttämättä tarvitse navbaria? Laitetaanko vasta kun kirjaudutaan?
   return (
+    <>
+    <Header />
     <View style={styles.aloitus}>
       <Text style={styles.etusivuText}
       >Tervetuloa Bikeorbus sovellukseen!</Text>
@@ -27,7 +29,7 @@ export default Aloitus = ({ navigation }) => {
         onPress={() => navigation.navigate('Kirjautuminen')}>
         <Text style={styles.pressableText}>Kirjaudu</Text>
       </Pressable>
-
     </View>
+    </>
   );
 };
