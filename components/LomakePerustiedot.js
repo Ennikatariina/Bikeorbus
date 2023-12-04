@@ -6,7 +6,7 @@ import { Switch, RadioButton } from 'react-native-paper';
 import addDataToFirebase from '../services/addData'
 
 
-export default LomakePerustiedot = ( setModalVisible ) => {
+export default LomakePerustiedot = ( {setModalVisible} ) => {
 
     const [address, setAddress]=useState('')
     const [age, setAge]=useState('')
@@ -23,11 +23,9 @@ export default LomakePerustiedot = ( setModalVisible ) => {
     const snowOnToggleSwitch = () => setSnowing(!snowing);
     const rainOnToggleSwitch = () => setRain(!rain);
         
-    console.log(address)
     const handleAddData = async() => {
         console.log("Tallenna nappia painettu")
-        console.log(address,age, weight,lowestTemperature, rain,snowing, wind, slipperyConditions)
-        await addDataToFirebase()
+        await addDataToFirebase(address,age, weight,lowestTemperature, rain,snowing, wind, slipperyConditions)
         setModalVisible(false)
     }
     return(

@@ -5,6 +5,7 @@ import { Alert } from "react-native";
 export const signUp = async(email, password)=> {
     try{
         const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
+
         
     }
     catch(error){

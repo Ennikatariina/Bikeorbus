@@ -7,11 +7,13 @@ import {auth, db} from '../firebaseConfig'
   const authListener = ({ navigation })=>{
     onAuthStateChanged(auth, (user) => {
   
-      console.log("########## HANDLE AUTH STATE CHANGED")
+      console.log("########## HANDLE AUTH STATE CHANGED", user)
       if (user) {
         // Käyttäjä on kirjautunut sisään
         console.log('#############################   Kirjautunut sisään');
+        
         navigation.navigate('Koti', {userUid: user.uid});
+        
         const uid = user.uid;
         /* try {
           // Tarkista, onko käyttäjän dokumenttikokoelma tyhjä
