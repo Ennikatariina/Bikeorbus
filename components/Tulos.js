@@ -100,18 +100,19 @@ export default Tulos = ({ navigation }) => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Position />
-        <Text>Keli kuva</Text>
         <Image source={{ uri: weatherImage }} style={{ width: 440, height: 200 }} />
-        <Pressable style={styles.pressable} onPress={() => navigation.navigate('Pyoralla')}>
-          <Text style={styles.pressableText}>Pyörällä</Text>
-        </Pressable>
-        <Pressable style={styles.pressable} onPress={() => navigation.navigate('Bussilla')}>
-          <Text style={styles.pressableText}>Bussilla</Text>
-        </Pressable>
-        <Pressable style={styles.pressable} onPress={handlePress}>
-          <Text style={styles.pressableText}>Kirjaudu  ulos</Text>
-        </Pressable>
+        <Position />
+        <View>
+          <Pressable style={styles.pressable} onPress={() => navigation.navigate('Pyoralla')}>
+            <Text style={styles.pressableText}>Pyörällä</Text>
+          </Pressable>
+          <Pressable style={styles.pressable} onPress={() => navigation.navigate('Bussilla')}>
+            <Text style={styles.pressableText}>Bussilla</Text>
+          </Pressable>
+          <Pressable style={styles.pressable} onPress={handlePress}>
+            <Text style={styles.pressableText}>Kirjaudu  ulos</Text>
+          </Pressable>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

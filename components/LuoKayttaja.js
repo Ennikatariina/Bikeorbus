@@ -7,8 +7,10 @@ import { formStyles } from '../style/formStyles';
 import { signUp } from '../auth/signUp';
 import {auth} from '../firebaseConfig'
 import { onAuthStateChanged } from '@firebase/auth';
+import LomakePerustiedot from './lomakePerustiedot';
+import { ScrollView } from 'react-native';
 
-export default LuoKayttaja = ({ navigation, }) => {
+export default LuoKayttaja = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -32,6 +34,7 @@ export default LuoKayttaja = ({ navigation, }) => {
             setEmail('')
             setPassword('')
             setConfirmPassword('')
+            
         }
         console.log('handleCreateAccount', email, password, confirmPassword); 
     };
@@ -39,6 +42,7 @@ export default LuoKayttaja = ({ navigation, }) => {
     return (
         <>
         <Header />
+        <ScrollView>
         <View >
             <View style={formStyles.container}>
                 <Text style={formStyles.formText}>Luo käyttäjä</Text>
@@ -65,9 +69,10 @@ export default LuoKayttaja = ({ navigation, }) => {
                 <Pressable style={formStyles.pressable} onPress={handleCreateAccount}>
                     <Text style={formStyles.pressableText}>Luo käyttäjä</Text>
                 </Pressable>
-               
+                <LomakePerustiedot></LomakePerustiedot>
             </View>
         </View>
+        </ScrollView>
         </>
 );
 };
