@@ -3,18 +3,33 @@ import { formStyles } from '../style/formStyles';
 import { SafeAreaView, Text, TextInput,Pressable, ScrollView, View } from "react-native";
 import { useState } from 'react';
 import { Switch, RadioButton } from 'react-native-paper';
+import addDataToFirebase from '../services/addData'
 
-export default LomakePerustiedot = ({ navigation }) => {
+
+export default LomakePerustiedot = ( setModalVisible ) => {
 
     const [address, setAddress]=useState('')
     const [age, setAge]=useState('')
     const [weight, setweight]=useState('')
     const [lowestTemperature, setLowestTemperature]=useState('')
-    const [rain, setRain]=useState('')
-    const [snowing, setSnowing]=useState('')
+    const [rain, setRain]=useState(false)
+    const [snowing, setSnowing]=useState(false)
     const [wind, setWind]=useState('')
-    const [slipperyConditions, setSlipperyConditions]=useState('')
+    const [slipperyConditions, setSlipperyConditions]=useState(false)
 
+    
+    
+    const slipperyOnToggleSwitch = () => setSlipperyConditions(!slipperyConditions);
+    const snowOnToggleSwitch = () => setSnowing(!snowing);
+    const rainOnToggleSwitch = () => setRain(!rain);
+        
+    console.log(address)
+    const handleAddData = async() => {
+        console.log("Tallenna nappia painettu")
+        console.log(address,age, weight,lowestTemperature, rain,snowing, wind, slipperyConditions)
+        await addDataToFirebase()
+        setModalVisible(false)
+    }
     return(
         <SafeAreaView style={formStyles.container}>
             <ScrollView>
@@ -46,24 +61,24 @@ export default LomakePerustiedot = ({ navigation }) => {
                     onChangeText={setLowestTemperature}
                 />
                 <Text>Haluatko ajaa vesisateella</Text>
-                <Switch value={rain} onValueChange={setRain} />
+                <Switch value={rain} onValueChange={rainOnToggleSwitch} />
 
                 <Text>Haluatko ajaa lumisateella</Text>
-                <Switch value={snowing} onValueChange={setSnowing} />
+                <Switch value={snowing} onValueChange={snowOnToggleSwitch} />
 
                 <Text>Minkälaisessa tuulessa voit pyörällä?</Text>
                 <RadioButton.Group onValueChange={newValue => setWind(newValue)} value={wind}>
-                <RadioButton.Item label="Tyyntä" value="first" />
-                <RadioButton.Item label="Kohtalainen tuuli" value="second" color="blue" />
-                <RadioButton.Item label="Navakka tuuli" value="third" color="green" />
-                <RadioButton.Item label="Kova tuuli" value="fourth" color="red" />
-                <RadioButton.Item label="Mysky tuuli" value="fifth" color="purple" />
+                <RadioButton.Item label="Tyyntä" value="Tyyntä" />
+                <RadioButton.Item label="Kohtalainen tuuli" value="kohtalainen" color="blue" />
+                <RadioButton.Item label="Navakka tuuli" value="navakka" color="green" />
+                <RadioButton.Item label="Kova tuuli" value="kova" color="red" />
+                <RadioButton.Item label="Mysky tuuli" value="myrsky" color="purple" />
                 </RadioButton.Group>
 
                 <Text>Haluatko ajaa liukkaalla kelillä (eli kuin lämpötila on +4-0 C)</Text>
-                <Switch value={slipperyConditions} onValueChange={setSlipperyConditions} />
+                <Switch value={slipperyConditions} onValueChange={slipperyOnToggleSwitch} />
 
-                <Pressable style={formStyles.pressable}>
+                <Pressable style={formStyles.pressable} onPress={handleAddData}>
                     <Text style={formStyles.pressableText}>Tallenna</Text>
                 </Pressable>
 

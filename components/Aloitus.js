@@ -6,7 +6,7 @@ import styles from '../style/styles';
 import { Pressable } from 'react-native';
 import Kirjautuminen from './Kirjautuminen';
 import { authListener } from '../auth/authManager';
-import LomakePerustiedot from './lomakePerustiedot';
+
 
 
 
