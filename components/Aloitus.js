@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Header from './Header';
 import styles from '../style/styles';
 import { Pressable } from 'react-native';
 import Kirjautuminen from './Kirjautuminen';
 import { authListener } from '../auth/authManager';
+
+
+
 
 export default Aloitus = ({ navigation }) => {
 
@@ -16,6 +19,7 @@ export default Aloitus = ({ navigation }) => {
   return (
     <>
     <Header />
+    <ScrollView>
     <View style={styles.aloitus}>
       <Text style={styles.etusivuText}
       >Tervetuloa Bikeorbus sovellukseen!</Text>
@@ -30,6 +34,8 @@ export default Aloitus = ({ navigation }) => {
         <Text style={styles.pressableText}>Kirjaudu</Text>
       </Pressable>
     </View>
+    
+    </ScrollView>
     </>
   );
 };
