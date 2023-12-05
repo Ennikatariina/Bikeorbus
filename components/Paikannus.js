@@ -4,6 +4,7 @@ import * as Location from 'expo-location';
 import Saa from './Saa';
 import styles from '../style/styles';
 
+
 export default function Position() {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
@@ -34,7 +35,6 @@ export default function Position() {
       }
     })();
   }, []);
-
   if (isLoading) {
     return <View style={styles.container}><Text>Retrieving location...</Text></View>
   } else {

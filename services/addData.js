@@ -7,7 +7,6 @@ import { auth } from '../auth/authManager';
 export default addDataToFirebase = async(address,age, weight,lowestTemperature, rain,snowing, wind, slipperyConditions) => {
 try {
   // Add a new document in collection "cities"
-  
 await setDoc(doc(db, "users", auth.currentUser.uid ), {
     address: address,
     age: age,
