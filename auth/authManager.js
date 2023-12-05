@@ -15,21 +15,6 @@ import {auth, db} from '../firebaseConfig'
         navigation.navigate('Koti', {userUid: user.uid});
         
         const uid = user.uid;
-        /* try {
-          // Tarkista, onko käyttäjän dokumenttikokoelma tyhjä
-          const userDoc = await db.collection('kayttajat').doc(user.uid).get();
-  
-          if (userDoc.exists) {
-            // Käyttäjän dokumentti on olemassa
-            navigation.navigate('Koti', { userUid: user.uid });
-          } else {
-            // Käyttäjän dokumentti ei ole olemassa, navigoi lomakesivulle
-            console.log('############ Ensimmäinen kirjautuminen, navigoidaan lomakkeelle');
-            navigation.navigate('lomakePerustiedot',{ userUid: user.uid } );
-          }
-        } catch (error) {
-          console.error('Tietokantavirhe:', error);
-        }*/
       }  
       else {
         // Käyttäjä on kirjautunut ulos
