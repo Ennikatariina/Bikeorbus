@@ -29,8 +29,7 @@ export default function Saa({ latitude, longitude}) {
       (error) => { 
         alert(error);
       }     
-    ) 
-   
+    )    
   }, [latitude, longitude])
 
   function getWindDirectionIcon(degrees) {
@@ -53,26 +52,20 @@ export default function Saa({ latitude, longitude}) {
     }
   }
   
-
   return (
     <View style={styles.containerLabel}>
-      {/* Ensimmäinen sarake */}
       <View style={styles.labelContainer}>
         <Text style={styles.label}>Lämpötila</Text>
         <Text>{temp}</Text>
         <Text style={styles.label}>Kuvaus</Text>
           <Text>{description}</Text>
-
       </View>
-
-      {/* Toinen sarake */}
       <View style={styles.labelContainer}>
       <Text style={styles.label}>Tuulen nopeus ja suunta</Text>
         <Text>{wind}</Text>
         <View style={styles.label}>
           <MaterialCommunityIcons name={windDirectionIcon} size={24} color="black" />
-      </View>
-    
+      </View>    
         </View>
       </View>
   );
