@@ -33,9 +33,7 @@ export default function App() {
         <Stack.Screen name="Koti" component={Koti}   />
         <Stack.Screen name="Asetukset" component={Asetukset}  />
         <Stack.Screen name="Bussilla" component={Bussilla}  />
-        <Stack.Screen name="Pyoralla" component={Pyoralla}  />
-       
-      
+        <Stack.Screen name="Pyoralla" component={Pyoralla}  />     
         </Stack.Navigator>
     </NavigationContainer>
     <Footer />

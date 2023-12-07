@@ -1,4 +1,4 @@
-import { StyleSheet, Platform, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
   footer: {
@@ -87,7 +87,17 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
       },
+      labelContainer: {
+        flex: 1,
+        alignItems: 'center',
+        marginTop: 10,
+      },
+      containerLabel: {
+        flexDirection: 'row',
+        marginTop: 10,
+      },
       label: {
+        fontSize: 16,
         fontWeight: 'bold',
         marginTop: 10,
       },

@@ -105,15 +105,17 @@ export default Tulos = ({ navigation }) => {
       <ScrollView>
         <Image source={{ uri: weatherImage, cache: "reload" }} style={{ width: 440, height: 200 }} />
         <Position />
-        <View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Pressable style={styles.pressable} onPress={() => navigation.navigate('Pyoralla')}>
             <Text style={styles.pressableText}>Pyörällä</Text>
           </Pressable>
           <Pressable style={styles.pressable} onPress={() => navigation.navigate('Bussilla')}>
             <Text style={styles.pressableText}>Bussilla</Text>
           </Pressable>
+        </View>
+        <View>
           <Pressable style={styles.pressable} onPress={handlePress}>
-            <Text style={styles.pressableText}>Kirjaudu  ulos</Text>
+            <Text style={styles.pressableText}>Kirjaudu ulos</Text>
           </Pressable>
         </View>
       </ScrollView>
