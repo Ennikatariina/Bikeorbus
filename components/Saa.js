@@ -3,7 +3,7 @@ import {  Text, Image } from 'react-native';
 import { API_URL, API_KEY, ICON_URL } from '../openweatherConfig';
 import styles from '../style/styles';
 
-export default function Saa({latitude,longitude}) {
+export default function Saa({ latitude, longitude}) {
   const [temp,setTemp] = useState(0);
   const [description, setDescription] = useState('');
   const [icon, setIcon] = useState('');

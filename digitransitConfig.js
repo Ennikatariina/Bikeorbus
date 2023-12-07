@@ -1,6 +1,8 @@
-const apiUrl = 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
-const apiKey = '96d26948555e473e92fa9c62e32f9a2f';
+// config.js
 
-const urlWithApiKey = `${apiUrl}?digitransit-subscription-key=${apiKey}`;
-
-export default urlWithApiKey;
+const config = {
+  openRouteServiceApiKey: '5b3ce3597851110001cf624886a812cccfb2459c878fcaa99df6f07d'
+};
+  
+  export default config;
+  

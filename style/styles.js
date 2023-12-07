@@ -93,12 +93,12 @@ export default StyleSheet.create({
       },
       containerMaps: {
           flex: 1,
-          backgroundColor: 'black',
+          backgroundColor: 'white',
           alignItems: 'center',
           justifyContent: 'center',
         },
       map: {
           width: Dimensions.get('window').width,
-          height: Dimensions.get('window').height,
+          height: Dimensions.get('window').height / 2,
       },
 });

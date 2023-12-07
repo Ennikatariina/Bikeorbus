@@ -1,56 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
-import MapView, { PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
-import styles from '../style/styles';
-import { urlWithApiKey, apiKey, apiUrl } from '../digitransitConfig';
+import MapView, { Polyline } from 'react-native-maps';
+import config from '../digitransitConfig';
 
-const MapScreen = () => {
-  const [routeCoordinates, setRouteCoordinates] = useState([]);
+const MapScreen = ({ originLatitude, originLongitude, destinationLatitude, destinationLongitude }) => {
+  const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
     const fetchRoute = async () => {
-      const query = `GraphQL-kyselysi tähän`;
-
-      try {
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/graphql',
-            'digitransit-subscription-key': apiKey
-          },
-          body: query
-        });
-        const jsonResponse = await response.json();
-        // Muunna jsonResponse sopivaan muotoon ja aseta reittikoordinaatit
-        setRouteCoordinates(muunnetutKoordinaatit);
-      } catch (error) {
-        console.error('Error fetching route:', error);
-      }
+      const response = await fetch(`https://api.openrouteservice.org/v2/directions/driving-car?api_key=${config.openRouteServiceApiKey}&start=${originLongitude},${originLatitude}&end=${destinationLongitude},${destinationLatitude}`);
+      const data = await response.json();
+      const { coordinates } = data.features[0].geometry;
+      setCoordinates(coordinates.map(([longitude, latitude]) => ({ latitude, longitude })));
     };
 
     fetchRoute();
-  }, []);
+  }, [originLatitude, originLongitude, destinationLatitude, destinationLongitude]);
 
   return (
-    <View style={styles.containerMaps}>
-      <MapView
-        provider={PROVIDER_GOOGLE}
-        style={styles.map}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      >
-        <Polyline
-          coordinates={routeCoordinates}
-          strokeColor="#000" // musta
-          strokeWidth={3}
-        />
-      </MapView>
-    </View>
+    <MapView
+      style={{ flex: 1 }}
+      initialRegion={{
+        latitude: originLatitude,
+        longitude: originLongitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }}
+    >
+      <Polyline coordinates={coordinates} strokeWidth={3} strokeColor="blue" />
+    </MapView>
   );
 };
 
 export default MapScreen;
+
+
