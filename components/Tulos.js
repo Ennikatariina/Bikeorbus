@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Pressable, Image, ScrollView, SafeAreaView } from 'react-native';
+import { View, Text, Pressable, Image, ScrollView, SafeAreaView, Alert } from 'react-native';
 import axios from 'axios';
 import styles from '../style/styles';
 import colors from '../style/colors';
@@ -17,12 +17,13 @@ import { Paikka } from './KayttajaPaikannus'
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-export default Tulos = ({ navigation }) => {
+export default function Tulos({ navigation }) {
   const [weatherImage, setWeatherImage] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isActive, setIsActive] = useState(true);
   const [imageKey, setImageKey] = useState(0);
-
+  const [text, setText] = useState('');
+  const currentUser = auth.currentUser; 
 
   useEffect(() => {
     const haeKoordinaatitJaKuva = async () => {
@@ -41,8 +42,38 @@ export default Tulos = ({ navigation }) => {
     };
   }, []);
 
-  // Haetaan kelikuvan url. Tulevaisuudessa luodaan url haku funktio, joka hakee urlin sijainnnin perusteella. Presets[0] on kelikameroista paikan ensimmäinen ja se on ilmaistu oliona. 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', (e) => {
+      //const currentUser = auth.currentUser; // Get the current user
 
+      if (!currentUser) {
+        console.log('User not logged in');
+        return;
+      }
+      console.log('User logged in:', currentUser.uid);
+      e.preventDefault();
+
+      Alert.alert(
+        'Haluatko kirjautua ulos?',
+        'Joudut kirjautumaan uudelleen mikäli poistut',
+        [
+          { text: "Pysy sivulla", style: 'cancel', onPress: () => {} },
+          {
+            text: 'Kirjaudu ulos',
+            style: 'destructive', 
+            onPress: () => {
+              logOut();
+              navigation.dispatch(e.data.action);
+            },
+          },
+        ]
+      );
+    });
+
+    return unsubscribe;
+  }, [navigation, currentUser]);
+
+   // Haetaan kelikuvan url. Tulevaisuudessa luodaan url haku funktio, joka hakee urlin sijainnnin perusteella. Presets[0] on kelikameroista paikan ensimmäinen ja se on ilmaistu oliona. 
   const fetchLatestWeatherImage = async (coords) => {
     if (!coords || !coords.latitude || !coords.longitude) {
       console.log('Koordinaatteja ei ole saatavilla');
