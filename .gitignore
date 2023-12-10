@@ -39,3 +39,7 @@ firebaseConfig.js
 
 # OpenWeather configuration file
 openweatherConfig.js
+
+# Digitransit configuration file
+digitransitConfig.js
+

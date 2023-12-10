@@ -1,4 +1,4 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
   footer: {
@@ -90,5 +90,15 @@ export default StyleSheet.create({
       label: {
         fontWeight: 'bold',
         marginTop: 10,
-      }
+      },
+      containerMaps: {
+          flex: 1,
+          backgroundColor: 'black',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+      map: {
+          width: Dimensions.get('window').width,
+          height: Dimensions.get('window').height,
+      },
 });
