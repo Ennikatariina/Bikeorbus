@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import * as Location from 'expo-location';
 import Saa from './Saa';
 import styles from '../style/styles';
-import tyomatkasuositus from '../function/tyomatkasuositus';
+import Tyomatkasuositus from './Tyomatkasuositus';
 
 
 export default function Position() {
@@ -19,8 +19,8 @@ export default function Position() {
         if (status === 'granted') {
           const location = await Location.getLastKnownPositionAsync({ accuracy: 6 });
           if (location) {
-            await setLatitude(location.coords.latitude);
-            await  setLongitude(location.coords.longitude);
+            setLatitude(location.coords.latitude);
+            setLongitude(location.coords.longitude);
           } else {
             // Käsittele tilanne, jossa sijaintitietoja ei ole saatavilla
             alert("Sijaintitietoja ei ole saatavilla.");
@@ -39,10 +39,7 @@ export default function Position() {
     })();
   }, []);
 
-  useEffect(()=>{
-    tyomatkasuositus(latitude, longitude)
-    console.log("location",latitude)
-  },[latitude && longitude])
+  
 
 
   if (isLoading) {
@@ -53,6 +50,7 @@ export default function Position() {
         <Text style={styles.label}>Your location</Text>
         <Text>{latitude.toFixed(7)},{longitude.toFixed(7)}</Text>
         <Saa latitude={latitude} longitude={longitude} />
+        <Tyomatkasuositus latitude={latitude} longitude={longitude}></Tyomatkasuositus>
       </View>
     )
   }
