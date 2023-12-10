@@ -3,17 +3,22 @@ import {  Text, Image } from 'react-native';
 import { API_URL, API_KEY, ICON_URL } from '../openweatherConfig';
 import styles from '../style/styles';
 
-export default function SaaTiedot({latitude,longitude}) {
+const SaaTiedot = async ({ latitude, longitude }) => {
+  console.log("saatiedot",longitude)
   const [temp,setTemp] = useState(0);
   const [description, setDescription] = useState('');
-  const [icon, setIcon] = useState('');
   const [wind, setWind] = useState(0);
   const [suunta, setSuunta] = useState(0);
+  
+  const latitude1=await latitude
+  const longitude1=await longitude
 
+  console.log("säätietodt",latitude1)
+  console.log(longitude1)
   useEffect(() => {
     const url = API_URL +
-    'lat=' + latitude +
-    '&lon=' + longitude +
+    'lat=' + latitude1 +
+    '&lon=' + longitude1 +
     '&units=metric' +
     '&appid=' + API_KEY;
     fetch(url)
@@ -24,15 +29,17 @@ export default function SaaTiedot({latitude,longitude}) {
         setDescription(result.weather[0].description);
         setWind(result.wind.speed);
         setSuunta(result.wind.deg);
-        setIcon(ICON_URL +  result.weather[0].icon + '@2x.png');
       },
       (error) => { 
         alert(error);
       }     
     ) 
-  }, [])
+  }, [latitude, longitude])
+  
   const weatherInformation={temp:temp, description:description, wind:wind, suunta:suunta}
+  console.log("##### säätiedot",weatherInformation)
   return (
     weatherInformation
   )
 }
+export default SaaTiedot;

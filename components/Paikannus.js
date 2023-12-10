@@ -3,12 +3,14 @@ import { Text, View } from 'react-native';
 import * as Location from 'expo-location';
 import Saa from './Saa';
 import styles from '../style/styles';
+import tyomatkasuositus from '../function/tyomatkasuositus';
 
 
 export default function Position() {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     (async () => {
@@ -17,8 +19,8 @@ export default function Position() {
         if (status === 'granted') {
           const location = await Location.getLastKnownPositionAsync({ accuracy: 6 });
           if (location) {
-            setLatitude(location.coords.latitude);
-            setLongitude(location.coords.longitude);
+            await setLatitude(location.coords.latitude);
+            await  setLongitude(location.coords.longitude);
           } else {
             // Käsittele tilanne, jossa sijaintitietoja ei ole saatavilla
             alert("Sijaintitietoja ei ole saatavilla.");
@@ -33,8 +35,16 @@ export default function Position() {
         alert(error);
         setIsLoading(false);
       }
+      
     })();
   }, []);
+
+  useEffect(()=>{
+    tyomatkasuositus(latitude, longitude)
+    console.log("location",latitude)
+  },[latitude && longitude])
+
+
   if (isLoading) {
     return <View style={styles.container}><Text>Retrieving location...</Text></View>
   } else {
