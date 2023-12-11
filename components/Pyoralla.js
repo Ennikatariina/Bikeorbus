@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { SafeAreaView, ScrollView, Text, View, TextInput, Button } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
 import config from '../digitransitConfig';
+import * as Location from 'expo-location';
 import styles from '../style/styles';
-import Saa from './Saa';
 
 const MapScreen = ({ latitude, longitude, destinationCoords }) => {
   console.log('MapScreen', latitude, longitude, destinationCoords);
@@ -17,6 +17,7 @@ const MapScreen = ({ latitude, longitude, destinationCoords }) => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        console.log('API Response:', data)
         if (data.features && data.features[0] && data.features[0].geometry) {
           const { coordinates } = data.features[0].geometry;
           setCoordinates(coordinates.map(([longitude, latitude]) => ({ latitude, longitude })));
@@ -37,7 +38,7 @@ const MapScreen = ({ latitude, longitude, destinationCoords }) => {
   return (
     <View style={styles.containerMaps}>
       <MapView
-        style={styles.map}
+        style={styles.map}       
         initialRegion={{
           latitude: latitude,
           longitude: longitude,

@@ -6,7 +6,7 @@ import config from '../digitransitConfig';
 import styles from '../style/styles';
 import Saa from './Saa';
 
-export default function Position() {
+export default function Position({ navigation }) {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [destinationAddress, setDestinationAddress] = useState('');
@@ -35,11 +35,12 @@ export default function Position() {
       }
       setIsLoading(false);
     })();
-  }, []);
+  }, [navigation]);
 
   const handleDestinationSubmit = async () => {
+    console.log('handleDestinationSubmit', destinationAddress);
     try {
-      const response = await fetch(`https://api.openrouteservice.org/geocode/search?api_key=${config.openRouteServiceApiKey}&text=${encodeURIComponent(destinationAddress)}`);
+      const response = await fetch(`https://api.openrouteservice.org/geocode/search?api_key=${config.openRouteServiceApiKey}&text=${encodeURIComponent(destinationCoords)}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
