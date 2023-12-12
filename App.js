@@ -13,6 +13,7 @@ import Bussilla from './components/Bussilla';
 import Pyoralla from './components/Pyoralla';
 import Footer from './components/Footer';
 import LomakePerustiedot from './components/LomakePerustiedot';
+import MuutaTietoja from './components/MuutaTietoja';
 
 
 
@@ -34,8 +35,10 @@ export default function App() {
         <Stack.Screen name="Asetukset" component={Asetukset}  />
         <Stack.Screen name="Bussilla" component={Bussilla}  />
         <Stack.Screen name="Pyoralla" component={Pyoralla}  />
-       
-      
+        <Stack.Screen name="Tiedot" component={MuutaTietoja}   /> 
+        <Stack.Screen name="LomakePerustiedot" component={LomakePerustiedot}   />
+        <Stack.Screen name="MuutaTietoja" component={MuutaTietoja} />
+
         </Stack.Navigator>
     </NavigationContainer>
     <Footer />
