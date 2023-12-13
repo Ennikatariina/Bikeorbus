@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, Button } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
 import polyline from '@mapbox/polyline';
-import { apiKey } from '../digitransitConfig.js';
+import { apiKey, apiKey2 } from '../digitransitConfig.js';
 import { Paikka } from './KayttajaPaikannus';
 import styles from '../style/styles';
+import { API_KEY } from '../openweatherConfig.js';
 
 const Pyoralla = () => {
   const [routeCoordinates, setRouteCoordinates] = useState([]);
@@ -35,7 +36,7 @@ const Pyoralla = () => {
       },
       body: JSON.stringify({ query, variables }),
     });
-
+  
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -61,6 +62,7 @@ const Pyoralla = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      console.log("data",data.features)
       if (data.features && data.features.length > 0) {
         const location = data.features[0].geometry.coordinates;
         setDestinationCoords({
@@ -77,7 +79,7 @@ const Pyoralla = () => {
 
   useEffect(() => {
     const fetchRoute = async () => {
-      console.log("fetchRoute suoritetaan");
+      console.log("fetchRoute suoritetaan", destinationCoords);
       if (userLocation && destinationCoords) {
         const query = `
           query GetRoute($fromPlace: String!, $toPlace: String!) {
@@ -120,9 +122,10 @@ const Pyoralla = () => {
         try {
           const data = await fetchRouteData(query, variables);
           console.log("API Response:", JSON.stringify(data, null, 2));
-          if (data && data.plan && data.plan.itineraries && data.plan.itineraries.length > 0) {
-            const itinerary = data.plan.itineraries[0];
-            console.log("Itinerary:", itinerary);
+          
+          if (data && data.data && data.data.plan && data.data.plan.itineraries && data.data.plan.itineraries.length > 0) {
+            const itinerary = data.data.plan.itineraries[0];
+            console.log("Itinerary:", itinerary.duration);
             let allCoordinates = [];
   
             itinerary.legs.forEach(leg => {
