@@ -43,6 +43,7 @@ export default function Position() {
   } else {
     return (
       <View style={styles.container}>
+        <Saa latitude={latitude} longitude={longitude} />  
         <Text style={styles.label}>Your location</Text>
         <Text>{latitude.toFixed(7)},{longitude.toFixed(7)}</Text>
         <Saa latitude={latitude} longitude={longitude} />

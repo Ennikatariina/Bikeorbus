@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, TextInput, Button } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
 import polyline from '@mapbox/polyline';
-import { apiKey } from '../digitransitConfig.js';
+import { apiKey, apiKey2 } from '../digitransitConfig.js';
 import { Paikka } from './KayttajaPaikannus';
 import styles from '../style/styles';
+import { API_KEY } from '../openweatherConfig.js';
 
 const Pyoralla = () => {
   const [routeCoordinates, setRouteCoordinates] = useState([]);
@@ -38,7 +39,7 @@ const Pyoralla = () => {
       },
       body: JSON.stringify({ query, variables }),
     });
-
+  
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -64,6 +65,7 @@ const Pyoralla = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      console.log("data",data.features)
       if (data.features && data.features.length > 0) {
         const location = data.features[0].geometry.coordinates;
         setDestinationCoords({
@@ -175,8 +177,11 @@ const Pyoralla = () => {
   if (!userLocation) {
     return <Text>Sijaintitietoja ladataan...</Text>;
   }
+}
+
 
   return (
+    
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
@@ -187,21 +192,15 @@ const Pyoralla = () => {
         />
         <Button title="Submit" onPress={handleDestinationSubmit} />
       </View>
-      <View style={styles.containerMaps}>
-        <MapView
-          ref={mapRef}
-          style={styles.map}
-          initialRegion={{
-            latitude: userLocation.latitude,
-            longitude: userLocation.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        >
+      </View>
+     
+
           <Polyline coordinates={routeCoordinates} strokeWidth={3} strokeColor="blue" />
         </MapView>
-        {distanceInKm && (
-          <Text style={styles.distanceText}>
-            Matkan pituus: {distanceInKm} km
-          </Text>
-        )}
+
+        </View>
+        </View>
+
+export default Pyoralla;
+        
+      
