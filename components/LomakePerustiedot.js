@@ -24,7 +24,6 @@ export default LomakePerustiedot = ( {setModalVisible} ) => {
     const rainOnToggleSwitch = () => setRain(!rain);
         
     const handleAddData = async() => {
-        console.log("Tallenna nappia painettu")
         await addDataToFirebase(address,age, weight,lowestTemperature, rain,snowing, wind, slipperyConditions)
         setModalVisible(false)
     }
@@ -54,7 +53,7 @@ export default LomakePerustiedot = ( {setModalVisible} ) => {
                 <TextInput
                     style={formStyles.input}
                     placeholder="Syötä lämpötila"
-                    keyboardType="numeric"
+                   
                     value={lowestTemperature}
                     onChangeText={setLowestTemperature}
                 />
@@ -66,14 +65,14 @@ export default LomakePerustiedot = ( {setModalVisible} ) => {
 
                 <Text>Minkälaisessa tuulessa voit pyörällä?</Text>
                 <RadioButton.Group onValueChange={newValue => setWind(newValue)} value={wind}>
-                <RadioButton.Item label="Tyyntä" value="Tyyntä" />
+                <RadioButton.Item label="Tyyntä" value="tyyntä" />
                 <RadioButton.Item label="Kohtalainen tuuli" value="kohtalainen" color="blue" />
                 <RadioButton.Item label="Navakka tuuli" value="navakka" color="green" />
                 <RadioButton.Item label="Kova tuuli" value="kova" color="red" />
                 <RadioButton.Item label="Mysky tuuli" value="myrsky" color="purple" />
                 </RadioButton.Group>
 
-                <Text>Haluatko ajaa liukkaalla kelillä (eli kuin lämpötila on +4-0 C)</Text>
+                <Text>Haluatko ajaa liukkaalla kelillä (eli kuin lämpötila on +4-(-1) C)</Text>
                 <Switch value={slipperyConditions} onValueChange={slipperyOnToggleSwitch} />
 
                 <Pressable style={formStyles.pressable} onPress={handleAddData}>

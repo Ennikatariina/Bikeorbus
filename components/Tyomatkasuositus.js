@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react';  // Import React
+import React, { useEffect, useState, useRef } from 'react';  // Import React
 import getPersonalInformation from '../services/getPersonalInformation';
 import {View, Text}from 'react-native';
 import { API_URL, API_KEY, ICON_URL } from '../openweatherConfig';
+import suositus from '../functions/suositus'
 
 
-const Tyomatkasuositus = ({latitude,longitude}) => {
+const Tyomatkasuositus =({latitude,longitude}) => {
 
-    const latitude1=latitude
-    const longitude1=longitude
+    const latitude1= latitude
+    const longitude1= longitude
     const [temp,setTemp] = useState(0);
     const [description, setDescription] = useState('');
     const [wind, setWind] = useState(0);
     const [suunta, setSuunta] = useState(0);
 
-    const [personLowestTemperature, setPersonLowestTemperature] = useState('');
-    const [personRain, setPersonRain] = useState(false);
-    const [personSlipperyConditions, setPersonSlipperyConditions] = useState(false);
-    const [personSnowing, setPersonSnowing] = useState(false);
-    const [personWindy, setPersonWindy] = useState('');
+    const [personalInformation, setPersonalInformation]= useState({})
+
+    //false tarkoittaa kyseisen ehdon kohdalla että mene bussilla. jos se vaihetaan true, niin se sääolosuhde puoltaa pyörällä menoa
+    let booleanArray={"temp":false, "wind": false, "rain": false, "slipperyConditions": false, "snow":false}
+    
 
     //UseEffect hakee sää tiedot latituden ja longituden mukaan
   useEffect(() => {
@@ -50,34 +51,37 @@ const Tyomatkasuositus = ({latitude,longitude}) => {
     };
   
     fetchData();
+    
   }, [latitude1, longitude1]);
 
   
-    const weatherInformation = {temp, description, wind, suunta}
-   // console.log("weatherInformation", weatherInformation)
-
-    let personalinformation=''
-    useEffect(() => {
-      personalinformation = async () => {
-        //Haetaan käyttäjän antamat tiedot
-        const perInformation = await getPersonalInformation()
-        //console.log("personalinformation",perInformation)
-        setPersonLowestTemperature(perInformation.lowestTemperature)
-        setPersonRain(perInformation.rain)
-        setPersonSlipperyConditions(perInformation.slipperyConditions)
-        setPersonSnowing(perInformation.snowing)
-        setPersonWindy(perInformation.wind)
+    
+  useEffect(() => {
+    const personalinformation = async () => {
+      try {
+        // Haetaan käyttäjän antamat tiedot
+        const personalInformation1 = await getPersonalInformation();
+        setPersonalInformation(personalInformation1);
+        console.log("personalinformation", personalInformation1);
+  
+        return personalInformation1;
+      } catch (error) {
+        console.error("Error fetching personal information:", error);
       }
-      personalinformation()
-    },[])
+    };
+  
+    personalinformation();
+  }, []);
+
+  
     
     //EHDOT
     //LÄMPÖTILA
-    if (parseInt(temp, 10) >= parseInt(personLowestTemperature, 10)) {
-      console.log('Sopiva lämpötila pyöräilyyn!');
-    } else {
-      console.log('Liian kylmä pyöräilyyn.');
-    }
+    if (parseInt(temp, 10) >= parseInt(personalInformation.lowestTemperature, 10)) {
+      booleanArray = { ...booleanArray, temp: true };
+      //console.log('Sopiva lämpötila pyöräilyyn!');
+      
+    } 
   
     //TUULI
     // Taulukko tuulen voimakkuuksista
@@ -89,17 +93,8 @@ const Tyomatkasuositus = ({latitude,longitude}) => {
       { min: 21, max: 32, label: "myrsky" },
     ];
 
-
     // Etsi windCategories-taulukosta henkilön tuulen kategoria
-    const windCategory = windCategories.find((category) => category.label === personWindy);
-
-    // Tarkista, että löydettiin kategoria
-    if (windCategory) {
-      const { min, max } = windCategory;
-      console.log(`Henkilön tuulen kategoria: ${personWindy}, Min: ${min}, Max: ${max}`);
-    } else {
-      console.log(`Henkilön tuulen kategoriaa "${personWindy}" ei löytynyt.`);
-    }
+    const windCategory = windCategories.find((category) => category.label === personalInformation.wind);
 
       // Tarkista, että löydettiin kategoria
     if (windCategory) {
@@ -107,39 +102,78 @@ const Tyomatkasuositus = ({latitude,longitude}) => {
 
       // Vertaile henkilön tuulen kategoriaa tämän hetkiseen tuulen nopeuteen
       if (wind >= min && wind <= max) {
-        console.log(`Tällä hetkellä sopiva tuuli henkilön määrittelemälle kategorialle "${personWindy}".`);
-        // Tässä voit antaa lisätoimintoja, esim. antaa suosituksen lähteä pyöräilemään
+        booleanArray = { ...booleanArray, wind: true };
+        //console.log(`Tällä hetkellä sopiva tuuli henkilön määrittelemälle kategorialle "${personalInformation.wind}".`);
+        
       } else if (wind < min) {
-        console.log(`Liian vähän tuulta henkilön määrittelemälle kategorialle "${personWindy}".`);
-        // Tässä voit antaa lisätoimintoja, esim. antaa suosituksen olla lähtemättä pyöräilemään
+        booleanArray = { ...booleanArray, wind: true };
+        //console.log(`sopiva pöyräilysää tuulen puolesta`);
+        
       } else {
-        console.log(`Liian paljon tuulta henkilön määrittelemälle kategorialle "${personWindy}".`);
-        // Tässä voit antaa lisätoimintoja, esim. antaa suosituksen olla lähtemättä pyöräilemään
+        //console.log(`Liian paljon tuulta henkilön määrittelemälle kategorialle "${personalInformation.wind}".`);
+     
       }
     } else {
-      console.log(`Henkilön tuulen kategoriaa "${personWindy}" ei löytynyt.`);
-      // Tässä voit antaa lisätoimintoja, esim. antaa yleinen suositus
+      console.log(`Henkilön tuulen kategoriaa "${personalInformation.wind}" ei löytynyt.`);
+      
     }
         
-    /* if (wind >= windCategories[0].min && wind <= windCategories[0].max) {
-      console.log("Tuuli on tyyntä.");
-    } else if (wind >= windCategories[1].min && wind <= windCategories[1].max) {
-      console.log("Tuuli on kohtalaista tuulta.");
-    } else if (wind >= windCategories[2].min && wind <= windCategories[2].max) {
-      console.log("Tuuli on navakkaa tuulta.");
-    } else if (wind >= windCategories[3].min && wind <= windCategories[3].max) {
-      console.log("Tuuli on kovaa tuulta.");
-    } else if (wind >= windCategories[4].min && wind <= windCategories[4].max) {
-      console.log("Tuuli on myrskyä.");
-    } else {
-      console.log("Tuulen nopeus ei vastaa tunnettuja kategorioita.");
-    } */
-    
+   //LIUKASKELI
+   
+  if (personalInformation.slipperyConditions == false){
+    if (temp <= 4 && temp >=-1 ){
+        //console.log("Liukaskeli, men bussilla")
+       
+    }
+    else{
+      booleanArray = { ...booleanArray, slipperyConditions: true };
+      //console.log("Voit mennä pöyrällä. Keli ei ole liukas")
+    }
+   }
+  else{
+    booleanArray = { ...booleanArray, slipperyConditions: true };
+    //console.log("Voit ajaa liukkaalla kelillä")
+  }
+   
+  //SADE
+  if (personalInformation.rain == false){
+    if ( description=="rain"){
+        //console.log("Sataa, mene bussilla")
+        
+    }
+    else{
+      booleanArray = { ...booleanArray, rain: true };
+      //console.log("Ei sada mene vain pöyrällä")
+    }
+   }
+  else{
+    booleanArray = { ...booleanArray, rain: true };
+    //console.log("Sinua ei haittaa pöyräillä sateelle")
+  }
 
-         
+  //LUMISADE
+  if (personalInformation.snowing == false){
+    if ( description=="snow"){
+        //console.log("Sataa lunta, mene bussilla")
+        
+    }
+    else{
+      booleanArray = { ...booleanArray, snow: true };
+      //console.log("Ei sada lunta mene vain pöyrällä")
+    }
+   }
+  else{
+    booleanArray = { ...booleanArray, snow: true };
+    //console.log("Sinua ei haittaa pöyräillä lumisateelle")
+  }
+
+  console.log(booleanArray)
+  const recommendation=suositus({booleanArray})
    return (
     <View>
         <Text>Tähän tulee työmatkasuositus</Text>
+        <Text>{recommendation}</Text>
+        
     </View>
    )
 
