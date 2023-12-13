@@ -32,6 +32,7 @@ function Bussit({ route }) {
           }
         `;
         const data = await fetchGraphQLData(query);
+        console.log("data",data);
         setStopDetails(data.data.stop);
       } catch (error) {
         console.error("API Fetch Error:", error);

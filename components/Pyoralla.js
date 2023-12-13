@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, TextInput, Button } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
 import polyline from '@mapbox/polyline';
@@ -11,6 +11,9 @@ const Pyoralla = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [destinationAddress, setDestinationAddress] = useState('');
   const [destinationCoords, setDestinationCoords] = useState(null);
+  const [distanceInKm, setDistanceInKm] = useState(null);
+  const mapRef = useRef(null);
+
 
   useEffect(() => {
     const fetchUserLocation = async () => {
@@ -67,6 +70,11 @@ const Pyoralla = () => {
           latitude: location[1],
           longitude: location[0]
         });
+        if (mapRef.current && userLocation && destinationCoords) {
+          const region = calculateRegion(userLocation, destinationCoords);
+          mapRef.current.animateToRegion(region, 1000); // 1000 ms animaation kesto
+        }
+      
       } else {
         alert("Ei löytynyt koordinaatteja annetulle osoitteelle.");
       }
@@ -75,9 +83,27 @@ const Pyoralla = () => {
     }
   };
 
+  const calculateRegion = (fromCoords, toCoords) => {
+    // Lasketaan keskipiste
+    const latitude = (fromCoords.latitude + toCoords.latitude) / 2;
+    const longitude = (fromCoords.longitude + toCoords.longitude) / 2;
+  
+    // Lasketaan etäisyydet
+    const latitudeDelta = Math.abs(fromCoords.latitude - toCoords.latitude) * 2;
+    const longitudeDelta = Math.abs(fromCoords.longitude - toCoords.longitude) * 2;
+  
+    // Palautetaan alue, joka sisältää molemmat koordinaatit
+    return {
+      latitude,
+      longitude,
+      latitudeDelta,
+      longitudeDelta
+    };
+  };
+  
+
   useEffect(() => {
     const fetchRoute = async () => {
-      console.log("fetchRoute suoritetaan");
       if (userLocation && destinationCoords) {
         const query = `
           query GetRoute($fromPlace: String!, $toPlace: String!) {
@@ -120,21 +146,20 @@ const Pyoralla = () => {
         try {
           const data = await fetchRouteData(query, variables);
           console.log("API Response:", JSON.stringify(data, null, 2));
-          if (data && data.plan && data.plan.itineraries && data.plan.itineraries.length > 0) {
-            const itinerary = data.plan.itineraries[0];
-            console.log("Itinerary:", itinerary);
+          if (data && data.data && data.data.plan && data.data.plan.itineraries && data.data.plan.itineraries.length > 0) {
+            const itinerary = data.data.plan.itineraries[0];
+            setDistanceInKm((itinerary.walkDistance / 1000).toFixed(2))
             let allCoordinates = [];
-  
+      
             itinerary.legs.forEach(leg => {
               const decodedPoints = polyline.decode(leg.legGeometry.points);
-              console.log(decodedPoints);
               const legCoordinates = decodedPoints.map(point => ({
                 latitude: point[0],
                 longitude: point[1]
               }));
               allCoordinates = allCoordinates.concat(legCoordinates);
             });
-  
+      
             setRouteCoordinates(allCoordinates);
           } else {
             console.error('Ei reittitietoja saatavilla');
@@ -143,8 +168,7 @@ const Pyoralla = () => {
           console.error('Error fetching route data:', error);
         }
       }
-    };
-  
+    }
     fetchRoute();
   }, [userLocation, destinationCoords]);
 
@@ -165,6 +189,7 @@ const Pyoralla = () => {
       </View>
       <View style={styles.containerMaps}>
         <MapView
+          ref={mapRef}
           style={styles.map}
           initialRegion={{
             latitude: userLocation.latitude,
@@ -175,10 +200,8 @@ const Pyoralla = () => {
         >
           <Polyline coordinates={routeCoordinates} strokeWidth={3} strokeColor="blue" />
         </MapView>
-      </View>
-    </View>
-  );
-};
-
-export default Pyoralla;
-
+        {distanceInKm && (
+          <Text style={styles.distanceText}>
+            Matkan pituus: {distanceInKm} km
+          </Text>
+        )}

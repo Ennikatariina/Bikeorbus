@@ -72,7 +72,7 @@ function Bussilla({ navigation }) {
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <View style={styles.content}>
+      <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           placeholder="Syötä pysäkin numero (esim. 11)"
