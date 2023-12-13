@@ -65,7 +65,6 @@ const Pyoralla = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log("data",data.features)
       if (data.features && data.features.length > 0) {
         const location = data.features[0].geometry.coordinates;
         setDestinationCoords({
@@ -147,7 +146,6 @@ const Pyoralla = () => {
         };
         try {
           const data = await fetchRouteData(query, variables);
-          console.log("API Response:", JSON.stringify(data, null, 2));
           if (data && data.data && data.data.plan && data.data.plan.itineraries && data.data.plan.itineraries.length > 0) {
             const itinerary = data.data.plan.itineraries[0];
             setDistanceInKm((itinerary.walkDistance / 1000).toFixed(2))
@@ -177,8 +175,6 @@ const Pyoralla = () => {
   if (!userLocation) {
     return <Text>Sijaintitietoja ladataan...</Text>;
   }
-}
-
 
 return (
   <View style={styles.container}>
@@ -193,6 +189,7 @@ return (
     </View>
     <View style={styles.containerMaps}>
       <MapView
+        ref={mapRef}
         style={styles.map}
         initialRegion={{
           latitude: userLocation.latitude,
@@ -204,9 +201,14 @@ return (
         <Polyline coordinates={routeCoordinates} strokeWidth={3} strokeColor="blue" />
       </MapView>
     </View>
+    {distanceInKm && (
+          <Text style={styles.distanceText}>
+            Matkan pituus: {distanceInKm} km
+          </Text>
+        )}
   </View>
 );
-};
+}
 
 export default Pyoralla;
         

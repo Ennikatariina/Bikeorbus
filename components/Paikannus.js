@@ -35,9 +35,6 @@ export default function Position() {
     })();
   }, []);
 
-
-  
-
   if (isLoading) {
     return <View style={styles.container}><Text>Retrieving location...</Text></View>;
   } else {
