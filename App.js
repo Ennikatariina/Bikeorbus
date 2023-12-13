@@ -39,6 +39,7 @@ export default function App() {
         <Stack.Screen name="Pyoralla" component={Pyoralla}  />     
         <Stack.Screen name="Tiedot" component={MuutaTietoja}   /> 
         <Stack.Screen name="LomakePerustiedot" component={LomakePerustiedot}   />
+        <Stack.Screen name="MuutaTietoja" component={MuutaTietoja}   />
         </Stack.Navigator>
     </NavigationContainer>
     <Footer />
