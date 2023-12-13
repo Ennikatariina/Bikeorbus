@@ -114,7 +114,7 @@ const Tyomatkasuositus =({latitude,longitude}) => {
      
       }
     } else {
-      console.log(`Henkilön tuulen kategoriaa "${personalInformation.wind}" ei löytynyt.`);
+      //console.log(`Henkilön tuulen kategoriaa "${personalInformation.wind}" ei löytynyt.`);
       
     }
         

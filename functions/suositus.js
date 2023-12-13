@@ -21,7 +21,7 @@ const suositus = () => {
       } else if (trueCount === 1) {
         return("Suositus: Tarkista sääolosuhteet huolellisesti ja harkitse muita kulkumuotoja.");
       } else {
-        return("Suositus: Harkitse muita kulkumuotoja, sääolosuhteet eivät ehkä ole suotuisat pyöräilyyn.");
+        return("Suositus: Tosi mies pyöräilisi, mutta sinulle suosittelen bussia.");
       }
 
 }

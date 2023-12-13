@@ -2,12 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Text, View} from 'react-native';
 import * as Location from 'expo-location';
 import styles from '../style/styles';
-<<<<<<< HEAD
 import Saa from './Saa';
-=======
 import Tyomatkasuositus from './Tyomatkasuositus';
 
->>>>>>> c2b7b297f35e713a70aa341026dcc815fc93c96a
 
 export default function Position() {
   const [latitude, setLatitude] = useState(0);
@@ -35,7 +32,6 @@ export default function Position() {
       } catch (error) {
         alert(error);
       }
-<<<<<<< HEAD
       setIsLoading(false);
     })();
   }, []);
@@ -43,28 +39,16 @@ export default function Position() {
 
   
 
-=======
-      
-    })();
-  }, []);
-
-  
-
-
->>>>>>> c2b7b297f35e713a70aa341026dcc815fc93c96a
   if (isLoading) {
     return <View style={styles.container}><Text>Retrieving location...</Text></View>;
   } else {
     return (
       <View style={styles.container}>
-<<<<<<< HEAD
         <Saa latitude={latitude} longitude={longitude} />  
-=======
         <Text style={styles.label}>Your location</Text>
         <Text>{latitude.toFixed(7)},{longitude.toFixed(7)}</Text>
         <Saa latitude={latitude} longitude={longitude} />
         <Tyomatkasuositus latitude={latitude} longitude={longitude}></Tyomatkasuositus>
->>>>>>> c2b7b297f35e713a70aa341026dcc815fc93c96a
       </View>
     );
   }
