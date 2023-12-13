@@ -62,7 +62,7 @@ const Tyomatkasuositus =({latitude,longitude}) => {
         // Haetaan käyttäjän antamat tiedot
         const personalInformation1 = await getPersonalInformation();
         setPersonalInformation(personalInformation1);
-        console.log("personalinformation", personalInformation1);
+        //console.log("personalinformation", personalInformation1);
   
         return personalInformation1;
       } catch (error) {
@@ -167,7 +167,7 @@ const Tyomatkasuositus =({latitude,longitude}) => {
     //console.log("Sinua ei haittaa pöyräillä lumisateelle")
   }
 
-  console.log(booleanArray)
+  //console.log(booleanArray)
   const recommendation=suositus({booleanArray})
    return (
     <View>
