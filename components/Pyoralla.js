@@ -180,26 +180,33 @@ const Pyoralla = () => {
 }
 
 
-  return (
-    
-    <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter destination address"
-          onChangeText={setDestinationAddress}
-          value={destinationAddress}
-        />
-        <Button title="Submit" onPress={handleDestinationSubmit} />
-      </View>
-      </View>
-     
-
-          <Polyline coordinates={routeCoordinates} strokeWidth={3} strokeColor="blue" />
-        </MapView>
-
-        </View>
-        </View>
+return (
+  <View style={styles.container}>
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter destination address"
+        onChangeText={setDestinationAddress}
+        value={destinationAddress}
+      />
+      <Button title="Submit" onPress={handleDestinationSubmit} />
+    </View>
+    <View style={styles.containerMaps}>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: userLocation.latitude,
+          longitude: userLocation.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      >
+        <Polyline coordinates={routeCoordinates} strokeWidth={3} strokeColor="blue" />
+      </MapView>
+    </View>
+  </View>
+);
+};
 
 export default Pyoralla;
         
