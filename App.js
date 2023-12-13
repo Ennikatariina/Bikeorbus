@@ -10,6 +10,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator} from '@react-navigation/stack';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Bussilla from './components/Bussilla';
+import Bussit from './components/Bussit';
 import Pyoralla from './components/Pyoralla';
 import Footer from './components/Footer';
 import LomakePerustiedot from './components/LomakePerustiedot';
@@ -33,6 +34,7 @@ export default function App() {
         <Stack.Screen name="Koti" component={Koti}   />
         <Stack.Screen name="Asetukset" component={Asetukset}  />
         <Stack.Screen name="Bussilla" component={Bussilla}  />
+        <Stack.Screen name="Bussit" component={Bussit}  />
         <Stack.Screen name="Pyoralla" component={Pyoralla}  />     
         </Stack.Navigator>
     </NavigationContainer>

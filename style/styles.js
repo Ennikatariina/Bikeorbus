@@ -79,8 +79,17 @@ export default StyleSheet.create({
       container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
         justifyContent: 'center',
+      },
+      inputContainer: {
+        marginTop: 20,
+        paddingHorizontal: 20,
+      },
+      input: {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 10,
       },
       centered: {
         flex: 1,
@@ -102,13 +111,11 @@ export default StyleSheet.create({
         marginTop: 10,
       },
       containerMaps: {
-          flex: 1,
-          backgroundColor: 'white',
-          alignItems: 'center',
-          justifyContent: 'center',
-        },
+        width: Dimensions.get('window').width,
+        height: '65%', // Asettaa kartan korkeudeksi 50% näytön korkeudesta
+      },
       map: {
-          width: Dimensions.get('window').width,
-          height: Dimensions.get('window').height / 2,
+        width: '100%',
+        height: '100%',
       },
 });
