@@ -18,6 +18,8 @@ const Tyomatkasuositus =({latitude,longitude}) => {
 
     //false tarkoittaa kyseisen ehdon kohdalla että mene bussilla. jos se vaihetaan true, niin se sääolosuhde puoltaa pyörällä menoa
     let booleanArray={"temp":false, "wind": false, "rain": false, "slipperyConditions": false, "snow":false}
+
+    let weatherConditions={"temp":temp, "wind": wind, "description":description}
     
 
     //UseEffect hakee sää tiedot latituden ja longituden mukaan
@@ -168,10 +170,9 @@ const Tyomatkasuositus =({latitude,longitude}) => {
   }
 
   //console.log(booleanArray)
-  const recommendation=suositus({booleanArray})
+  const recommendation=suositus({booleanArray, weatherConditions})
    return (
     <View>
-        <Text>Tähän tulee työmatkasuositus</Text>
         <Text>{recommendation}</Text>
         
     </View>

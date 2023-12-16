@@ -39,11 +39,16 @@ export default function Position() {
     return <View style={styles.container}><Text>Retrieving location...</Text></View>;
   } else {
     return (
-      <View style={styles.container}>
+      <View >
+        <View style={styles.container}>
         <Saa latitude={latitude} longitude={longitude} />  
         <Text style={styles.label}>Your location</Text>
         <Text>{latitude.toFixed(7)},{longitude.toFixed(7)}</Text>
-        <Tyomatkasuositus latitude={latitude} longitude={longitude}></Tyomatkasuositus>
+        </View>
+        <View style={styles.container}>
+          <Tyomatkasuositus latitude={latitude} longitude={longitude}></Tyomatkasuositus>
+        </View>
+        
       </View>
     );
   }
