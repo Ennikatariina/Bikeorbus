@@ -1,9 +1,10 @@
 import {View, Text}from 'react-native';
 
-const suositus = ({weatherConditions}) => {
+const suositus = ({booleanArray,weatherConditions}) => {
 
   console.log("Suositus",weatherConditions)
-  const booleanArray = {"rain":false, "slipperyConditions": false, "snow": false, "temp": false, "wind": true};
+  //Tämä on testausta varten
+  //const booleanArray = {"rain":false, "slipperyConditions": false, "snow": false, "temp": false, "wind": true};
 
   // Laske kuinka monta true on objektissa
   const trueCount = Object.values(booleanArray).filter(value => value === true).length;
