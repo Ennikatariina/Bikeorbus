@@ -156,6 +156,11 @@ export default StyleSheet.create({
     
   },
   textrforecast:{
-    
-  }
+    textAlign: 'center',
+  },
+  icon: {
+    width: 50, // Määrittele kuvalle leveys
+    height: 50, // Määrittele kuvalle korkeus
+    alignSelf: 'center',
+  },
 });
