@@ -6,49 +6,30 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-    aloitus: {
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-      },
-      kirjautuminen: {
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-      },
-      tulos: {
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-      },
-      aloitus: {
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-      },
-    text: {
-        fontSize: 16,
-        color: 'black',
-        fontWeight: 'bold',
-         textAlign: 'center',
-      },      
-      header: {
-        marginBottom: 15,
-        marginRight: 15,
-        flexDirection: 'row',
-        alignItems: 'center', 
-        height: 100,  
-        //marginTop: Platform.OS === 'ios' ? 20 : 0,       
-      },
-      logo: {
-        width: 440, 
-        height: 100, 
-        marginRight: 5, 
-      },
-      etusivuText: {
-        fontSize: 30,
-        color: 'black',
-        fontWeight: 'bold',
+  aloitus: {
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+  kirjautuminen: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  tulos: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  aloitus: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  text: {
+      fontSize: 16,
+      color: 'black',
+      fontWeight: 'bold',
         textAlign: 'center',
       },
       button: {
