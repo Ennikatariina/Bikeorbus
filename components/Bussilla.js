@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, StyleSheet, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, TextInput, Button, Alert, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
 import { fetchStopIdByNameOrNumber } from '../Api';
 import { fetchStopsByRadius } from '../Api';
 import { useFocusEffect } from '@react-navigation/native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { apiKey } from '../digitransitConfig.js';
 import * as Location from 'expo-location';
+import styles from '../style/styles';
 
 function Bussilla({ navigation }) {
   const [query, setQuery] = useState('');
   const [region, setRegion] = useState(null);
   const [nearbyStops, setNearbyStops] = useState([]);
   const [timetables, setTimetables] = useState([]);
+  const [userLocation, setUserLocation] = useState(null);
+  const [destinationAddress, setDestinationAddress] = useState('');
+  const [destinationCoords, setDestinationCoords] = useState(null);
 
   // User location and permissions
   useFocusEffect(
@@ -34,11 +39,50 @@ function Bussilla({ navigation }) {
     }, [])
   );
 
+  const handleDestinationSubmit = async () => {
+    if (!destinationAddress) {
+      alert("Destination address is required");
+      return;
+    }
+    const digitransitGeocodingUrl = `https://api.digitransit.fi/geocoding/v1/search?text=${encodeURIComponent(destinationAddress)}&size=1`;
+
+    try {
+      const response = await fetch(digitransitGeocodingUrl, {
+        headers: {
+          'Content-Type': 'application/json',
+          'digitransit-subscription-key': apiKey
+        }
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      if (data.features && data.features.length > 0) {
+        const location = data.features[0].geometry.coordinates;
+        setDestinationCoords({
+          latitude: location[1],
+          longitude: location[0]
+        });
+        if (mapRef.current && userLocation && destinationCoords) {
+          const region = calculateRegion(userLocation, destinationCoords);
+          mapRef.current.animateToRegion(region, 1000); // 1000 ms animaation kesto
+        }
+      
+      } else {
+        alert("Ei löytynyt koordinaatteja annetulle osoitteelle.");
+      }
+    } catch (error) {
+      alert("Virhe haettaessa koordinaatteja: " + error);
+    }
+  };
+
   // Initial stop-id fetch by using name or number of the stop
   const handleSearch = async () => {
     try {
+      const { latitude, longitude } = await handleDestinationSubmit(query);
       const stops = await fetchStopIdByNameOrNumber(query);
       if (stops.length > 0) {
+        const nearestStop = stops[0];
         navigation.navigate('Bussit', { stopId: stops[0].gtfsId });
       } else {
         Alert.alert('Virhe', 'Pysäkkiä ei löydetty, yritä uudella numerolla!');
@@ -74,17 +118,17 @@ function Bussilla({ navigation }) {
     >
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
+          style={styles.input2}
           placeholder="Syötä pysäkin numero (esim. 11)"
           value={query}
           onChangeText={setQuery}
         />
-        <View style={styles.buttonContainer}>
+        <View style={styles.buttonContainer2}>
           <Button title="Hae aikataulu" onPress={handleSearch} color="#0B3B24" />
         </View>
       </View>
       {region ? (
-        <View style={styles.mapContainer}>
+        <View style={styles.containerMaps}>
           <MapView
             provider={PROVIDER_GOOGLE}
             style={styles.map}
@@ -99,55 +143,5 @@ function Bussilla({ navigation }) {
     </KeyboardAvoidingView>
   );
 }
-
-// Styling
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: '#F7F2E0',
-  },
-  content: {
-    flex: 1,
-  },
-  input: {
-    borderColor: '#6E6E6E',
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-  },
-  buttonContainer: {
-    marginBottom: 10,
-  },
-  listItem: {
-    backgroundColor: 'f0f0f0',
-    padding: 15,
-    borderRadius: 5,
-    marginVertical: 8,
-  },
-  listItemText: {
-    fontSize: 16,
-  },
-  stopItem: {
-    marginVertical: 8,
-  },
-  stopItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginVertical: 8,
-  },
-  mapContainer: {
-    height: 300,
-    width: '100%',
-    borderRadius: 15,
-    overflow: 'hidden',
-  },
-  map: {
-    height: '100%',
-    width: '100%',
-  },
-});
 
 export default Bussilla;

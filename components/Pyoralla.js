@@ -2,10 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, TextInput, Button } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
 import polyline from '@mapbox/polyline';
-import { apiKey, apiKey2 } from '../digitransitConfig.js';
+import { apiKey } from '../digitransitConfig.js';
 import { Paikka } from './KayttajaPaikannus';
 import styles from '../style/styles';
-import { API_KEY } from '../openweatherConfig.js';
 
 const Pyoralla = () => {
   const [routeCoordinates, setRouteCoordinates] = useState([]);
@@ -51,9 +50,8 @@ const Pyoralla = () => {
       alert("Destination address is required");
       return;
     }
-
     const digitransitGeocodingUrl = `https://api.digitransit.fi/geocoding/v1/search?text=${encodeURIComponent(destinationAddress)}&size=1`;
-
+    
     try {
       const response = await fetch(digitransitGeocodingUrl, {
         headers: {
