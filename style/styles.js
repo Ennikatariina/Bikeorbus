@@ -146,5 +146,16 @@ export default StyleSheet.create({
   containerRow:{
     flexDirection: 'row'
     
+  },
+  containerforecast:{
+      flex: 1,
+      backgroundColor: '#fff',
+      justifyContent: 'center',
+      margin: 10,
+     
+    
+  },
+  textrforecast:{
+    
   }
 });

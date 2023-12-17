@@ -72,8 +72,8 @@ export default function Saaennuste({ latitude, longitude}) {
       <View style={styles.containerRow}>
       
       {getTemperatureAndTime()?.map((data, index) => (
-        <View key={index} style={styles.container}>
-          <Text>{`Klo ${data.time}, ${data.temperature}°C`}</Text>
+        <View key={index} style={styles.containerforecast}>
+          <Text style={styles.textrforecast}>{`Klo ${data.time}, ${data.temperature}°C`}</Text>
         </View>
       ))}
     </View>
