@@ -4,6 +4,7 @@ import * as Location from 'expo-location';
 import styles from '../style/styles';
 import Saa from './Saa';
 import Tyomatkasuositus from './Tyomatkasuositus';
+import Saaennuste from './saaennuste';
 
 export default function Position() {
   const [latitude, setLatitude] = useState(0);
@@ -45,6 +46,7 @@ export default function Position() {
         <Text style={styles.label}>Your location</Text>
         <Text>{latitude.toFixed(7)},{longitude.toFixed(7)}</Text>
         </View>
+        <Saaennuste latitude={latitude} longitude={longitude}></Saaennuste>
         <View style={styles.container}>
           <Tyomatkasuositus latitude={latitude} longitude={longitude}></Tyomatkasuositus>
         </View>

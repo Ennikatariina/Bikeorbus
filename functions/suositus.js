@@ -1,8 +1,7 @@
 import {View, Text}from 'react-native';
 
-const suositus = ({booleanArray,weatherConditions}) => {
+const suositus = ({booleanArray}) => {
 
-  console.log("Suositus",weatherConditions)
   //Tämä on testausta varten
   //const booleanArray = {"rain":false, "slipperyConditions": false, "snow": false, "temp": false, "wind": true};
 
@@ -30,11 +29,11 @@ const suositus = ({booleanArray,weatherConditions}) => {
 
   
   if (trueCount === 5) {
-      return("Suosittelen, että pöyräilet töihin. Sää on loistava pöyräilyyn.");
+      return("Suosittelen, että pyöräilet töihin. Sää on loistava pöyräilyyn.");
 
     } else if (trueCount === 4) {
       const missingCondition = Object.keys(booleanArray).find(key => booleanArray[key] === false);
-      return(`Suosittelen, että pöyräilet töihin, mutta tarkista pyöräilyolosuhteet ${returnListOneFalse[missingCondition]} osalta.`);
+      return(`Suosittelen, että pyöräilet töihin, mutta tarkista pyöräilyolosuhteet ${returnListOneFalse[missingCondition]} osalta.`);
 
     } else if (trueCount === 3) {
       const lastRecommendation = recommendation.pop(); // Poista viimeinen suositus

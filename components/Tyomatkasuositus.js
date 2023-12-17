@@ -170,7 +170,7 @@ const Tyomatkasuositus =({latitude,longitude}) => {
   }
 
   //console.log(booleanArray)
-  const recommendation=suositus({booleanArray, weatherConditions})
+  const recommendation=suositus({booleanArray})
    return (
     <View>
         <Text>{recommendation}</Text>
