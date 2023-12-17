@@ -118,4 +118,47 @@ export default StyleSheet.create({
         width: '100%',
         height: '100%',
       },
+      container2: {
+        flex: 1,
+        padding: 10,
+        backgroundColor: '#F7F2E0',
+      },
+      content2: {
+        flex: 1,
+      },
+      input2: {
+        borderColor: '#6E6E6E',
+        borderWidth: 1,
+        borderRadius: 5,
+        padding: 10,
+        marginBottom: 10,
+      },
+      buttonContainer2: {
+        marginBottom: 10,
+      },
+      listItem2: {
+        backgroundColor: 'f0f0f0',
+        padding: 15,
+        borderRadius: 5,
+        marginVertical: 8,
+      },
+      listItemText2: {
+        fontSize: 16,
+      },
+      stopItem2: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginVertical: 8,
+      },
+      mapContainer2: {
+        height: 300,
+        width: '100%',
+        borderRadius: 15,
+        overflow: 'hidden',
+      },
+      map2: {
+        height: '100%',
+        width: '100%',
+      },
 });
