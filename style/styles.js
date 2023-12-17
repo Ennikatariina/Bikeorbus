@@ -61,6 +61,7 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         justifyContent: 'center',
+        margin: 10
       },
       inputContainer: {
         marginTop: 20,
