@@ -34,7 +34,7 @@ export default LuoKayttaja = ({ navigation }) => {
             await signUp(email, password, setModalVisible)
             setEmail('')
             setPassword('')
-            setConfirmPassword('')
+            setConfirmPassword('')         
         }
         console.log('handleCreateAccount', email, password, confirmPassword); 
     };
