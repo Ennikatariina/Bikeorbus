@@ -185,7 +185,7 @@ return (
         onChangeText={setDestinationAddress}
         value={destinationAddress}
       />
-      <Button title="Hae reitti" onPress={handleDestinationSubmit} color="#1C3659" />
+      <Button title="Hae reitti" onPress={handleDestinationSubmit} color="#1C3659" style={{ marginBottom: 20 }}/>
     </View>
     <View style={styles.containerMaps}>
       <MapView

@@ -47,7 +47,7 @@ export default Koti = ({ navigation }) => {
           }
           return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
         },
-      tabBarActiveTintColor: 'steelblue',
+      tabBarActiveTintColor: '#1C3659',
       tabBarInactiveTintColor: 'gray',
     })}
     >
