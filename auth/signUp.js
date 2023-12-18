@@ -8,8 +8,8 @@ export const signUp = async(email, password,setModalVisible)=> {
         setModalVisible(true)
         
     }
-    catch(error){
-        console.log("Registration failed", error.message)
-        Alert.alert("Rekisteröityminen ei onnistunut")
-    }
+    catch (error) {
+        console.log("Registration failed", error.message);
+        Alert.alert("Rekisteröityminen ei onnistunut");
+      }
 }
