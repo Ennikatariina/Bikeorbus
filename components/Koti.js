@@ -32,10 +32,6 @@ export default Koti = ({ navigation }) => {
             iconName = focused
               ? 'chart-box'
               : 'chart-box-outline';
-          } else if (route.name === 'Asetukset') {
-            iconName = focused
-              ? 'view-list'
-              : 'view-list-outline';
           } else if (route.name === 'Bussilla') {
             iconName = focused
               ? 'bus'
@@ -44,6 +40,10 @@ export default Koti = ({ navigation }) => {
             iconName = focused
               ? 'bike'
               : 'bike';
+          } else if (route.name === 'Asetukset') {
+            iconName = focused
+              ? 'view-list'
+              : 'view-list-outline';
           }
           return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
         },
@@ -52,9 +52,9 @@ export default Koti = ({ navigation }) => {
     })}
     >
     <Tab.Screen name="Tulos" component={Tulos}   />  
-    <Tab.Screen name="Asetukset" component={Asetukset}  />
     <Tab.Screen name="Bussilla" component={Bussilla}  />
     <Tab.Screen name="Pyöralla" component={Pyoralla}  />
+    <Tab.Screen name="Asetukset" component={Asetukset}  />
   </Tab.Navigator>
   );
 };

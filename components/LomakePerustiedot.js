@@ -33,17 +33,20 @@ export default LomakePerustiedot = ( {setModalVisible} ) => {
                <Text style={formStyles.formText}>Perustiedot</Text>
                 <TextInput style={formStyles.input}
                     placeholder="Osoite"
+                    placeholderTextColor="white"
                     value={address}
                     onChangeText={setAddress}
                 />
                 <TextInput style={formStyles.input}
                     placeholder="Ikä"
+                    placeholderTextColor="white"
                     value={age}
                     onChangeText={setAge}
                 />
 
                 <TextInput style={formStyles.input}
                     placeholder="Paino"
+                    placeholderTextColor="white"
                     value={weight}
                     onChangeText={setweight}
                 />
@@ -53,12 +56,13 @@ export default LomakePerustiedot = ( {setModalVisible} ) => {
                 <TextInput
                     style={formStyles.input}
                     placeholder="Syötä lämpötila"
+                    placeholderTextColor="white"
                    
                     value={lowestTemperature}
                     onChangeText={setLowestTemperature}
                 />
                 <Text>Haluatko ajaa vesisateella</Text>
-                <Switch value={rain} onValueChange={rainOnToggleSwitch} />
+                <Switch value={rain} onValueChange={rainOnToggleSwitch} color={blue} />
 
                 <Text>Haluatko ajaa lumisateella</Text>
                 <Switch value={snowing} onValueChange={snowOnToggleSwitch} />
