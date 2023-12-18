@@ -1,14 +1,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import Header from './Header';
-import Footer from './Footer';
-import Kirjautuminen from './Kirjautuminen';
 import Asetukset from './Asetukset';
+import Tulos from './Tulos';
+import Bussilla from './Bussilla';
+import Pyoralla from './Pyoralla';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator} from '@react-navigation/stack';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import Tulos from './Tulos';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -45,5 +44,3 @@ export default Koti = ({ navigation }) => {
   </Tab.Navigator>
   );
 };
-
- 

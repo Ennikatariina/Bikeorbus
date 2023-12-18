@@ -52,22 +52,6 @@ export default function Tulos({ navigation }) {
       }
       console.log('User logged in:', currentUser.uid);
       e.preventDefault();
-
-      Alert.alert(
-        'Haluatko kirjautua ulos?',
-        'Joudut kirjautumaan uudelleen mikäli poistut',
-        [
-          { text: "Pysy sivulla", style: 'cancel', onPress: () => {} },
-          {
-            text: 'Kirjaudu ulos',
-            style: 'destructive', 
-            onPress: () => {
-              logOut();
-              navigation.dispatch(e.data.action);
-            },
-          },
-        ]
-      );
     });
 
     return unsubscribe;
@@ -142,11 +126,6 @@ export default function Tulos({ navigation }) {
           </Pressable>
           <Pressable style={styles.pressable} onPress={() => navigation.navigate('Bussilla')}>
             <Text style={styles.pressableText}>Bussilla</Text>
-          </Pressable>
-        </View>
-        <View>
-          <Pressable style={styles.pressable} onPress={handlePress}>
-            <Text style={styles.pressableText}>Kirjaudu ulos</Text>
           </Pressable>
         </View>
       </ScrollView>

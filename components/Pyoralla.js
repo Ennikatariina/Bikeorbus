@@ -5,8 +5,11 @@ import polyline from '@mapbox/polyline';
 import { apiKey } from '../digitransitConfig.js';
 import { Paikka } from './KayttajaPaikannus';
 import styles from '../style/styles';
+import Asetukset from './Asetukset';
+import Tulos from './Tulos';
+import Koti from './Koti';
 
-const Pyoralla = () => {
+const Pyoralla = ( {navigation } ) => {
   const [routeCoordinates, setRouteCoordinates] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
   const [destinationAddress, setDestinationAddress] = useState('');
@@ -171,8 +174,16 @@ const Pyoralla = () => {
   }, [userLocation, destinationCoords]);
 
   if (!userLocation) {
-    return <Text>Sijaintitietoja ladataan...</Text>;
+    return (
+    <View style={styles.centered}> 
+       <Text>Sijaintitietoja ladataan...</Text>
+    </View> 
+    );
   }
+
+  const handleBackToKoti = () => {
+    navigation.navigate('Koti');
+  };
 
 return (
   <View style={styles.container}>
@@ -204,6 +215,7 @@ return (
             Matkan pituus: {distanceInKm} km
           </Text>
         )}
+        <Button title="Takaisin" onPress={handleBackToKoti} />
   </View>
 );
 }
