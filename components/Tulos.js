@@ -25,6 +25,7 @@ export default function Tulos({ navigation }) {
   const [text, setText] = useState('');
   const currentUser = auth.currentUser; 
 
+  
   useEffect(() => {
     const haeKoordinaatitJaKuva = async () => {
       setIsLoading(true);

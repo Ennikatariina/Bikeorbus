@@ -27,7 +27,7 @@ export default function Saaennuste({ latitude, longitude}) {
               '&lon=' + longitude +
               '&appid=' + API_KEY +
               '&units=metric';
-              console.log(url)
+              
             const response = await fetch(url);
            
             const result = await response.json();
@@ -45,7 +45,7 @@ export default function Saaennuste({ latitude, longitude}) {
         fetchData();
       }, [latitude, longitude]); 
 
-  console.log(forecast)
+  
      const getTemperatureAndTime = () => {
       if (!forecast || forecast.length < 4) {
         return null;
@@ -59,7 +59,6 @@ export default function Saaennuste({ latitude, longitude}) {
           const temperature = forecast[i].main.temp;
           const time = getFormattedTime(forecast[i].dt_txt);
           const icon = forecast[i].weather[0].icon;
-          console.log(icon)
           const iconUrl=ICON_URL + icon + "@2x.png"
           temperaturesAndTimes.push({ temperature, time, iconUrl });
         }
@@ -67,7 +66,7 @@ export default function Saaennuste({ latitude, longitude}) {
     
       return temperaturesAndTimes;
     };
-  console.log(getTemperatureAndTime())
+  //console.log(getTemperatureAndTime())
     return (
       <View style={styles.containerRow}>
       
