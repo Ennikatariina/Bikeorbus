@@ -190,7 +190,7 @@ return (
     <View style={styles.containerMaps}>
       <MapView
         ref={mapRef}
-        style={styles.map}
+        style={[styles.map,{marginTop: 10,}]}
         initialRegion={{
           latitude: userLocation.latitude,
           longitude: userLocation.longitude,
