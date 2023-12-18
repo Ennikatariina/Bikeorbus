@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ActivityIndicator, FlatList, StyleSheet, Modal, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, ActivityIndicator, FlatList, StyleSheet, Modal, KeyboardAvoidingView, Platform, Button } from 'react-native';
 import fetchGraphQLData from '../Api';
 import styles from '../style/styles';
 
-function Bussit({ route }) {
+function Bussit({ route, navigation }) {
   const { stopId } = route.params;
   const [stopDetails, setStopDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -67,6 +67,10 @@ function Bussit({ route }) {
     return <Text style={styles.infoText}>Tälle pysäkille ei löydetty tietoja. Pysäkin tunniste saattaa olla väärä.</Text>;
   }
 
+  const handleBackToKoti = () => {
+    navigation.navigate('Koti');
+  };
+
   return (
     <KeyboardAvoidingView
       style={styles.bussitContainer}
@@ -87,6 +91,9 @@ function Bussit({ route }) {
           onRequestClose={() => setModalVisible(!modalVisible)}
         >
         </Modal>
+      </View>
+      <View style={{paddingBottom: 20}}>
+          <Button title="Takaisin" onPress={handleBackToKoti} />
       </View>
     </KeyboardAvoidingView>
   );
