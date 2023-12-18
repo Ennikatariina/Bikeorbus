@@ -1,5 +1,8 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
+
+const windowWidth = Dimensions.get('window').width;
+
 export default StyleSheet.create({
   footer: {
     backgroundColor: 'lightblue',
@@ -163,4 +166,9 @@ export default StyleSheet.create({
     height: 50, // Määrittele kuvalle korkeus
     alignSelf: 'center',
   },
+ 
+  logo:{
+   height:200,
+    width: windowWidth, 
+  }
 });
