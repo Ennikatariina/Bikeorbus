@@ -51,20 +51,20 @@ export default LuoKayttaja = ({ navigation }) => {
                 <View style={formStyles.container}>
                     <Text style={formStyles.formText}>Luo käyttäjä</Text>
 
-                    <TextInput style={formStyles.input}
+                    <TextInput style={formStyles.input2}
                         placeholder="Sähköposti"
                         value={email}
                         onChangeText={setEmail}
                     />
 
-                    <TextInput style={formStyles.input}
+                    <TextInput style={formStyles.input2}
                         placeholder="Salasana"
                         value={password}
                         onChangeText={setPassword}
                         secureTextEntry
                     />
 
-                    <TextInput style={formStyles.input}
+                    <TextInput style={formStyles.input2}
                         placeholder="Vahvista salasana"
                         value={confirmPassword}
                         onChangeText={setConfirmPassword}

@@ -34,13 +34,13 @@ export default Kirjautuminen = ({ navigation }) => {
     <View style={formStyles.container}>
       <Text style={formStyles.formText}>Kirjaudu sisään</Text>
 
-      <TextInput style={formStyles.input}
+      <TextInput style={formStyles.input2}
         placeholder="Sähköposti"
         value={email}
         onChangeText={setEmail}
       />
 
-      <TextInput style={formStyles.input}
+      <TextInput style={formStyles.input2}
         placeholder="Salasana"
         value={password}
         onChangeText={setPassword}
