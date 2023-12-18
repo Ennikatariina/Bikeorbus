@@ -7,7 +7,6 @@ import {auth, db} from '../firebaseConfig'
   const authListener = ({ navigation })=>{
     onAuthStateChanged(auth, (user) => {
   
-      console.log("########## HANDLE AUTH STATE CHANGED")
       if (user) {
         // Käyttäjä on kirjautunut sisään
         console.log('#############################   Kirjautunut sisään');
