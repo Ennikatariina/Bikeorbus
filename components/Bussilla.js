@@ -114,6 +114,27 @@ function Bussilla({ navigation }) {
     }
   };
 
+  const handleNearestStop = async () => {
+    if (!region) {
+        alert("Sijaintitietoja ei ole saatavilla.");
+        return;
+    }
+
+    try {
+        const stops = await fetchStopsByRadius(region.latitude, region.longitude, 500); // 500 is the radius in meters
+        if (stops.length > 0) {
+            const nearestStop = stops[0];
+            navigation.navigate('Bussit', { stopId: nearestStop.gtfsId });
+        } else {
+            Alert.alert('Ei lähellä olevia pysäkkejä', 'Ei löytynyt pysäkkejä läheltäsi.');
+        }
+    } catch (error) {
+        console.error('Error fetching nearby stops:', error);
+        Alert.alert('Virhe', 'Lähimpien pysäkkien haku epäonnistui!');
+    }
+};
+
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -122,13 +143,17 @@ function Bussilla({ navigation }) {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input2}
-          placeholder="Syötä pysäkin numero (esim. 11)"
+          placeholder="Syötä pysäkin nimi"
           value={query}
           onChangeText={setQuery}
         />
         <View style={styles.buttonContainer2}>
           <Button title="Hae aikataulu" onPress={handleSearch} color="#0B3B24" />
         </View>
+        <View style={styles.buttonContainer2}>
+    <Button title="Näytä lähin pysäkki" onPress={handleNearestStop} color="#0B3B24" />
+</View>
+
       </View>
       {region ? (
         <View style={styles.containerMaps}>
