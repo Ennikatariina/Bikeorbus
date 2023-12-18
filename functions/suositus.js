@@ -43,12 +43,12 @@ const suositus = ({booleanArray}) => {
     } else if (trueCount === 2) {
       const lastRecommendation = recommendation.pop(); // Poista viimeinen suositus
       const joinedRecommendation = recommendation.join(", ") + " ja " + lastRecommendation;
-      return `Harkitse pyöräilyä. Sääolosuhteet eivät vastaa ihanne pyöräily säätäsi ${joinedRecommendation} osalta.`;
+      return `Harkitse bussia. Sääolosuhteet eivät vastaa ihanne pyöräily säätäsi ${joinedRecommendation} osalta.`;
 
     } else if (trueCount === 1) {
       const lastRecommendation = recommendation.pop(); // Poista viimeinen suositus
       const joinedRecommendation = recommendation.join(", ") + " ja " + lastRecommendation;
-      return `Harkitse pyöräilyä. Sääolosuhteet eivät vastaa ihanne pyöräily säätäsi ${joinedRecommendation} osalta.`;
+      return `Harkitse bussia. Sääolosuhteet eivät vastaa ihanne pyöräily säätäsi ${joinedRecommendation} osalta.`;
     } else {
       return("Suositus: Tosi mies pyöräilisi, mutta sinulle suosittelen bussia.");
     }
