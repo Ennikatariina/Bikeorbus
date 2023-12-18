@@ -6,6 +6,7 @@ import {
   Pressable,
   ScrollView,
   Switch,
+  Button,
 } from "react-native";
 import { formStyles } from "../style/formStyles";
 //import { getUserDataFromFirebase, updateUserDataInFirebase } from '../services/getPersonalInformation'; // Replace with your own Firebase service
@@ -15,6 +16,7 @@ import styles from "../style/styles";
 import { Alert } from "react-native";
 import { View } from "react-native";
 import { RadioButton } from "react-native-paper";
+import { useNavigation } from '@react-navigation/native';
 
 const MuutaTietoja = () => {
   const navigation = useNavigation();
