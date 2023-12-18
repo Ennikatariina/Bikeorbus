@@ -93,7 +93,7 @@ function Bussit({ route, navigation }) {
         </Modal>
       </View>
       <View style={{paddingBottom: 20}}>
-          <Button title="Takaisin" onPress={handleBackToKoti} />
+          <Button title="Takaisin" onPress={handleBackToKoti} color="#1C3659"/>
       </View>
     </KeyboardAvoidingView>
   );

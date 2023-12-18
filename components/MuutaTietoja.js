@@ -178,7 +178,7 @@ const MuutaTietoja = () => {
           <Pressable onPress={handleAddData} style={styles.pressable}>
             <Text style={styles.pressableText}>Tallenna tiedot!</Text>
           </Pressable>
-          <Button title="Takaisin" onPress={handleBackToKoti} />
+          <Button title="Takaisin" onPress={handleBackToKoti} color="#1C3659" />
         </View>
       </ScrollView>
     </SafeAreaView>
