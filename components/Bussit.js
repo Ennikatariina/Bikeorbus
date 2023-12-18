@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, FlatList, StyleSheet, Modal, KeyboardAvoidingView, Platform } from 'react-native';
 import fetchGraphQLData from '../Api';
+import styles from '../style/styles';
 
 function Bussit({ route }) {
   const { stopId } = route.params;
@@ -68,7 +69,7 @@ function Bussit({ route }) {
 
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={styles.bussitContainer}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <View style={styles.content}>
@@ -90,69 +91,5 @@ function Bussit({ route }) {
     </KeyboardAvoidingView>
   );
 }
-
-// Styling
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: '#F7F2E0',
-  },
-  content: {
-    flex: 1,
-    marginTop: 50,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  listItem: {
-    backgroundColor: '#e6e1cf',
-    borderColor: '#6E6E6E',
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-    marginVertical: 8,
-  },
-  headsign: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  infoText: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginTop: 20,
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: '#F7F2E0',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  modalTextInput: {
-    height: 40,
-    width: 200,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 15,
-    padding: 10,
-  },
-});
 
 export default Bussit;

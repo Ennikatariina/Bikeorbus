@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import Header from './Header';
 import Footer from './Footer';
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,11 +9,8 @@ import MuutaTietoja from './MuutaTietoja';
 import styles from '../style/styles';
 import { Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
- 
 import { Alert } from 'react-native';
 import { logOut } from '../auth/logOut';
-
-
 
 export default Asetukset = ({ navigation }) => {
 
@@ -21,14 +18,11 @@ export default Asetukset = ({ navigation }) => {
    
       await logOut()
       navigation.navigate('Kirjautuminen')
-      
-  
   };
 
   return (
      <>
-      <Header />
-      
+      <Header />      
         <Text style={styles.etusivuText}
       >Asetukset</Text>
       <Pressable style={styles.pressable}
@@ -41,5 +35,4 @@ export default Asetukset = ({ navigation }) => {
       <Footer />
     </>
   );
-
 };

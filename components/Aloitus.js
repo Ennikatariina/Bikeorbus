@@ -4,12 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import Header from './Header';
 import styles from '../style/styles';
 import { Pressable } from 'react-native';
-import Kirjautuminen from './Kirjautuminen';
 import { authListener } from '../auth/authManager';
-
-
-
-
 export default Aloitus = ({ navigation }) => {
 
   // Seuraa käyttäjän tilaa (onko kirjautuneena vai ei)

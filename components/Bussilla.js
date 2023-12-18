@@ -113,7 +113,6 @@ function Bussilla({ navigation }) {
         alert("Sijaintitietoja ei ole saatavilla.");
         return;
     }
-
     try {
         const stops = await fetchStopsByRadius(region.latitude, region.longitude, 500);
         if (stops.length > 0) {
@@ -127,7 +126,6 @@ function Bussilla({ navigation }) {
         Alert.alert('Virhe', 'Lähimpien pysäkkien haku epäonnistui!');
     }
 };
-
 
   return (
     <KeyboardAvoidingView
