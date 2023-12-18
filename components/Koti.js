@@ -45,10 +45,16 @@ export default Koti = ({ navigation }) => {
               ? 'view-list'
               : 'view-list-outline';
           }
-          return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
+          return <MaterialCommunityIcons name={iconName} size={48} color={color} />;
         },
       tabBarActiveTintColor: '#1C3659',
       tabBarInactiveTintColor: 'gray',
+      tabBarStyle: {
+        height: 70,
+      },
+      tabBarLabelStyle: {
+        fontSize: 16,
+      },
     })}
     >
     <Tab.Screen name="Tulos" component={Tulos}   />  
