@@ -173,6 +173,9 @@ const Pyoralla = () => {
     </View> 
     );
   }
+  const handleBackToKoti = () => {
+    navigation.navigate('Koti');
+  };
 
 return (
   <View style={styles.container}>
@@ -185,6 +188,9 @@ return (
       />
       <Button title="Submit" onPress={handleDestinationSubmit} />
     </View>
+    <View style={{ position: 'absolute', top: 50, left: 20}}>
+          <Button title="Takaisin" onPress={handleBackToKoti} />
+      </View>
     <View style={styles.containerMaps}>
       <MapView
         ref={mapRef}
