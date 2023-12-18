@@ -36,7 +36,7 @@ export default Koti = ({ navigation }) => {
             iconName = focused
               ? 'bus'
               : 'bus';
-          } else if (route.name === 'Pyöralla') {
+          } else if (route.name === 'Pyörällä') {
             iconName = focused
               ? 'bike'
               : 'bike';
@@ -59,7 +59,7 @@ export default Koti = ({ navigation }) => {
     >
     <Tab.Screen name="Tulos" component={Tulos}   />  
     <Tab.Screen name="Bussilla" component={Bussilla}  />
-    <Tab.Screen name="Pyöralla" component={Pyoralla}  />
+    <Tab.Screen name="Pyörällä" component={Pyoralla}  />
     <Tab.Screen name="Asetukset" component={Asetukset}  />
   </Tab.Navigator>
   );
