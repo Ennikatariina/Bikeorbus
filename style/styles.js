@@ -44,12 +44,12 @@ export default StyleSheet.create({
     padding: 5,
     margin: 10,
     borderRadius: 5,
-    backgroundColor: '#008080',
+    backgroundColor: '#1C3659',
     borderWidth: 1,
-    borderColor: 'teal',
+    borderColor: '4D6687',
     justifyContent: 'center',
     alignItems: 'center',
-  
+ 
   },
   pressableText: {
     color: 'white',  
