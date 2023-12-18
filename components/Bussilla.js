@@ -158,9 +158,6 @@ function Bussilla({ navigation }) {
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <View style={{ position: "absolute", top: 20, left: 20 }}>
-        <Button title="Takaisin" onPress={handleBackToKoti} />
-      </View>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input2}
@@ -172,14 +169,14 @@ function Bussilla({ navigation }) {
           <Button
             title="Hae aikataulu"
             onPress={handleSearch}
-            color="#008080"
+            color="#1C3659"
           />
         </View>
         <View style={styles.buttonContainer2}>
           <Button
             title="Näytä lähin pysäkki"
             onPress={handleNearestStop}
-            color="#008080"
+            color="#1C3659"
           />
         </View>
       </View>

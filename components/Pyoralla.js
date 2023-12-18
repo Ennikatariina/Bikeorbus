@@ -180,16 +180,13 @@ return (
   <View style={styles.container}>
     <View style={styles.inputContainer}>
       <TextInput
-        style={styles.input}
-        placeholder="Enter destination address"
+        style={styles.input2}
+        placeholder="Syötä osoite"
         onChangeText={setDestinationAddress}
         value={destinationAddress}
       />
-      <Button title="Submit" onPress={handleDestinationSubmit} />
+      <Button title="Hae reitti" onPress={handleDestinationSubmit} color="#1C3659" />
     </View>
-    <View style={{ position: 'absolute', top: 50, left: 20}}>
-          <Button title="Takaisin" onPress={handleBackToKoti} />
-      </View>
     <View style={styles.containerMaps}>
       <MapView
         ref={mapRef}
