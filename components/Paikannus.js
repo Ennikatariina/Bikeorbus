@@ -46,9 +46,7 @@ export default function Position() {
         <Text style={styles.label}>Your location</Text>
         <Text>{latitude.toFixed(7)},{longitude.toFixed(7)}</Text>
         </View>
-        
-        <Saaennuste latitude={latitude} longitude={longitude}></Saaennuste>
-        
+        <Saaennuste latitude={latitude} longitude={longitude}></Saaennuste>        
         <View style={styles.container}>
           <Tyomatkasuositus latitude={latitude} longitude={longitude}></Tyomatkasuositus>
         </View>

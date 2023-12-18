@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, TextInput, Button, Alert, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
-import { fetchStopIdByNameOrNumber } from '../Api';
-import { fetchStopsByRadius } from '../Api';
-import { useFocusEffect } from '@react-navigation/native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import { apiKey } from '../digitransitConfig.js';
 import * as Location from 'expo-location';
 import styles from '../style/styles';
+import { fetchStopsByRadius } from '../Api';
+import { apiKey } from '../digitransitConfig.js';
+import { useFocusEffect } from '@react-navigation/native';
+import { fetchStopIdByNameOrNumber } from '../Api';
 
 function Bussilla({ navigation }) {
-  const [query, setQuery] = useState('');
-  const [region, setRegion] = useState(null);
-  const [nearbyStops, setNearbyStops] = useState([]);
-  const [timetables, setTimetables] = useState([]);
-  const [userLocation, setUserLocation] = useState(null);
   const [destinationAddress, setDestinationAddress] = useState('');
-  const [destinationCoords, setDestinationCoords] = useState(null);
+  const [region, setRegion] = useState(null);
+  const mapRef = useRef(null);
+  const [query, setQuery] = useState('');
 
   // User location and permissions
   useFocusEffect(
@@ -40,7 +37,8 @@ function Bussilla({ navigation }) {
   );
 
   const handleDestinationSubmit = async () => {
-    if (!destinationAddress) {
+    let destinationLatLong = null;
+    if (!destinationAddress) {se
       alert("Destination address is required");
       return;
     }
@@ -59,10 +57,10 @@ function Bussilla({ navigation }) {
       const data = await response.json();
       if (data.features && data.features.length > 0) {
         const location = data.features[0].geometry.coordinates;
-        setDestinationCoords({
+        destinationLatLong = {
           latitude: location[1],
           longitude: location[0]
-        });
+        };
         if (mapRef.current && userLocation && destinationCoords) {
           const region = calculateRegion(userLocation, destinationCoords);
           mapRef.current.animateToRegion(region, 1000); // 1000 ms animaation kesto
@@ -74,24 +72,29 @@ function Bussilla({ navigation }) {
     } catch (error) {
       alert("Virhe haettaessa koordinaatteja: " + error);
     }
+    return destinationLatLong;
   };
 
   // Initial stop-id fetch by using name or number of the stop
   const handleSearch = async () => {
-    try {
-      const { latitude, longitude } = await handleDestinationSubmit(query);
-      const stops = await fetchStopIdByNameOrNumber(query);
-      if (stops.length > 0) {
-        const nearestStop = stops[0];
-        navigation.navigate('Bussit', { stopId: stops[0].gtfsId });
-      } else {
-        Alert.alert('Virhe', 'Pysäkkiä ei löydetty, yritä uudella numerolla!');
-      }
-    } catch (error) {
-      console.error("Error fetching stops:", error);
-      Alert.alert('Virhe', 'Pysäkkitietojen haku epäonnistui!');
+    if (!query) {
+        alert("Please enter a stop number or name.");
+        return;
     }
-  };
+    try {
+        const stops = await fetchStopIdByNameOrNumber(query);
+        if (stops.length > 0) {
+            const nearestStop = stops[0];
+            navigation.navigate('Bussit', { stopId: nearestStop.gtfsId });
+        } else {
+            Alert.alert('Error', 'No stops found, try another number or name!');
+        }
+    } catch (error) {
+        console.error("Error fetching stops:", error);
+        Alert.alert('Error', 'Failed to fetch stop information!');
+    }
+};
+
 
   const handleMapPress = async (event) => {
     const { latitude, longitude } = event.nativeEvent.coordinate;
