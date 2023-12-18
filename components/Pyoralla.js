@@ -71,7 +71,7 @@ const Pyoralla = () => {
         });
         if (mapRef.current && userLocation && destinationCoords) {
           const region = calculateRegion(userLocation, destinationCoords);
-          mapRef.current.animateToRegion(region, 1000); // 1000 ms animaation kesto
+          mapRef.current.animateToRegion(region, 1000);
         }
       
       } else {
@@ -83,15 +83,11 @@ const Pyoralla = () => {
   };
 
   const calculateRegion = (fromCoords, toCoords) => {
-    // Lasketaan keskipiste
     const latitude = (fromCoords.latitude + toCoords.latitude) / 2;
     const longitude = (fromCoords.longitude + toCoords.longitude) / 2;
-  
-    // Lasketaan etäisyydet
     const latitudeDelta = Math.abs(fromCoords.latitude - toCoords.latitude) * 2;
     const longitudeDelta = Math.abs(fromCoords.longitude - toCoords.longitude) * 2;
   
-    // Palautetaan alue, joka sisältää molemmat koordinaatit
     return {
       latitude,
       longitude,

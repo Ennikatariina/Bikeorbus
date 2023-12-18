@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
-import {  Text, Image, View } from 'react-native';
-import { API_URL, API_KEY, ICON_URL } from '../openweatherConfig';
+import {  Text, View } from 'react-native';
+import { API_URL, API_KEY } from '../openweatherConfig';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import styles from '../style/styles';
 

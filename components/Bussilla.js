@@ -14,7 +14,6 @@ function Bussilla({ navigation }) {
   const mapRef = useRef(null);
   const [query, setQuery] = useState('');
 
-  // User location and permissions
   useFocusEffect(
     React.useCallback(() => {
       (async () => {
@@ -63,7 +62,7 @@ function Bussilla({ navigation }) {
         };
         if (mapRef.current && userLocation && destinationCoords) {
           const region = calculateRegion(userLocation, destinationCoords);
-          mapRef.current.animateToRegion(region, 1000); // 1000 ms animaation kesto
+          mapRef.current.animateToRegion(region, 1000);
         }
       
       } else {
@@ -75,7 +74,6 @@ function Bussilla({ navigation }) {
     return destinationLatLong;
   };
 
-  // Initial stop-id fetch by using name or number of the stop
   const handleSearch = async () => {
     if (!query) {
         alert("Please enter a stop number or name.");
@@ -95,16 +93,12 @@ function Bussilla({ navigation }) {
     }
 };
 
-
   const handleMapPress = async (event) => {
     const { latitude, longitude } = event.nativeEvent.coordinate;
     try {
-      // Query nearby bus stops using Digitransit API
       const stops = await fetchStopsByRadius(latitude, longitude, 30);
       if (stops.length > 0) {
-        // Assuming you want to navigate to the first stop in the list
         navigation.navigate('Bussit', { stopId: stops[0].gtfsId });
-        //setNearbyStops(stops);
       } else {
         Alert.alert('Pysäkkiä ei löydetty', 'Ei pysäkkejä tällä alueella, tai tarkkuus ei ollut riittävä!');
       }
@@ -121,7 +115,7 @@ function Bussilla({ navigation }) {
     }
 
     try {
-        const stops = await fetchStopsByRadius(region.latitude, region.longitude, 500); // 500 is the radius in meters
+        const stops = await fetchStopsByRadius(region.latitude, region.longitude, 500);
         if (stops.length > 0) {
             const nearestStop = stops[0];
             navigation.navigate('Bussit', { stopId: nearestStop.gtfsId });
@@ -148,10 +142,10 @@ function Bussilla({ navigation }) {
           onChangeText={setQuery}
         />
         <View style={styles.buttonContainer2}>
-          <Button title="Hae aikataulu" onPress={handleSearch} color="#0B3B24" />
+          <Button title="Hae aikataulu" onPress={handleSearch} color="#008080" />
         </View>
         <View style={styles.buttonContainer2}>
-    <Button title="Näytä lähin pysäkki" onPress={handleNearestStop} color="#0B3B24" />
+    <Button title="Näytä lähin pysäkki" onPress={handleNearestStop} color="#008080" />
 </View>
 
       </View>
