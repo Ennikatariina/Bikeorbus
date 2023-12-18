@@ -6,14 +6,13 @@ import { apiKey } from '../digitransitConfig.js';
 import { Paikka } from './KayttajaPaikannus';
 import styles from '../style/styles';
 
-const Pyoralla = () => {
+const Pyoralla = ( {navigation } ) => {
   const [routeCoordinates, setRouteCoordinates] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
   const [destinationAddress, setDestinationAddress] = useState('');
   const [destinationCoords, setDestinationCoords] = useState(null);
   const [distanceInKm, setDistanceInKm] = useState(null);
   const mapRef = useRef(null);
-
 
   useEffect(() => {
     const fetchUserLocation = async () => {
