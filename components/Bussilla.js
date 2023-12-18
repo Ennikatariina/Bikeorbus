@@ -110,12 +110,19 @@ function Bussilla({ navigation }) {
       Alert.alert('Virhe', 'Kohteen pysäkkien haku epäonnistui!');
     }
   };
+  
+  const handleBackToKoti = () => {
+    navigation.navigate('Koti');
+  };
 
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
+      <View style={{ position: 'absolute', top: 50, left: 20}}>
+          <Button title="Takaisin" onPress={handleBackToKoti} />
+      </View>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input2}

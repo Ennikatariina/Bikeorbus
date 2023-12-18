@@ -110,11 +110,6 @@ export default function Tulos({ navigation }) {
       </View>
     );
   }
-  //LOGOUT HANDLEPRESS, tämä pitää siirtää, kun tiedetään logout napin oikea paikka
-  const handlePress = async () => {
-    await logOut()
-  }
-
   return (
     <SafeAreaView>
       <ScrollView>

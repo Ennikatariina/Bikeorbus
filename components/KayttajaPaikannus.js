@@ -19,4 +19,3 @@ export async function Paikka() {
     longitude: location.coords.longitude
   };
 }
-

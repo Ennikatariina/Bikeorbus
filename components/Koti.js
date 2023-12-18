@@ -17,6 +17,10 @@ export default Koti = ({ navigation }) => {
     <Tab.Navigator
     initialRouteName="aloitus"
     screenOptions={({ route }) => ({
+      headerStyle: {
+        backgroundColor: '#293040',
+      },
+      headerTintColor: 'white',
       tabBarIcon:
         ({ focused, color, size }) => {
           let iconName;

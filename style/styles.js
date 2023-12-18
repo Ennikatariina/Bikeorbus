@@ -2,9 +2,10 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
   footer: {
-    backgroundColor: 'lightblue',
+    backgroundColor: '#293040',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingBottom: 12
   },
   aloitus: {
       backgroundColor: '#fff',
@@ -45,9 +46,9 @@ export default StyleSheet.create({
         padding: 5,
         margin: 10,
         borderRadius: 5,
-        backgroundColor: '#008080',
+        backgroundColor: '#1C3659',
         borderWidth: 1,
-        borderColor: 'teal',
+        borderColor: '4D6687',
         justifyContent: 'center',
         alignItems: 'center',
      

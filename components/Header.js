@@ -7,7 +7,7 @@ export default function Header() {
   return (
     
     <View style={styles.header} >
-      <Image style={styles.logo} source={Logo} />
+     {/* <Image style={styles.logo} source={Logo} /> */}
     </View>
     
   )
