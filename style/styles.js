@@ -5,9 +5,10 @@ const windowWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
   footer: {
-    backgroundColor: 'lightblue',
+    backgroundColor: '#293040',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingBottom: 12
   },
   aloitus: {
       backgroundColor: '#fff',
