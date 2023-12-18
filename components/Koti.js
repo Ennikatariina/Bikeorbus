@@ -36,6 +36,14 @@ export default Koti = ({ navigation }) => {
             iconName = focused
               ? 'view-list'
               : 'view-list-outline';
+          } else if (route.name === 'Bussilla') {
+            iconName = focused
+              ? 'bus'
+              : 'bus';
+          } else if (route.name === 'Pyöralla') {
+            iconName = focused
+              ? 'bike'
+              : 'bike';
           }
           return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
         },
@@ -45,6 +53,8 @@ export default Koti = ({ navigation }) => {
     >
     <Tab.Screen name="Tulos" component={Tulos}   />  
     <Tab.Screen name="Asetukset" component={Asetukset}  />
+    <Tab.Screen name="Bussilla" component={Bussilla}  />
+    <Tab.Screen name="Pyöralla" component={Pyoralla}  />
   </Tab.Navigator>
   );
 };

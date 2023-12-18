@@ -31,12 +31,10 @@ export default LuoKayttaja = ({ navigation }) => {
             Alert.alert("Salasanat eivät täsmää")
         }
         else{
-            await signUp(email, password)
+            await signUp(email, password, setModalVisible)
             setEmail('')
             setPassword('')
             setConfirmPassword('')
-            setModalVisible(true)
-            
         }
         console.log('handleCreateAccount', email, password, confirmPassword); 
     };
