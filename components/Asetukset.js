@@ -4,7 +4,7 @@ import styles from '../style/styles';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 import { logOut } from '../auth/logOut';
-import  deleteUser  from '../auth/deleteUser';
+import deleteUser  from '../auth/deleteUser';
 
 const Asetukset = () => {
   const navigation = useNavigation();
@@ -28,6 +28,7 @@ const Asetukset = () => {
       if (userConfirmed !== null) {
         // Käyttäjä syötti salasanansa, voit nyt välittää sen deleteUser-funktiolle
         await deleteUser({ navigation, userConfirmed });
+
         navigation.navigate('Aloitus')
       }
     }

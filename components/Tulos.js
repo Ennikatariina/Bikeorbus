@@ -44,7 +44,7 @@ export default function Tulos({ navigation }) {
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('beforeRemove', (e) => {
-      //const currentUser = auth.currentUser; // Get the current user
+      const currentUser = auth.currentUser; // Get the current user
 
       if (!currentUser) {
         console.log('User not logged in');
