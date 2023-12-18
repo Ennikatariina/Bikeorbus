@@ -17,6 +17,7 @@ import { View } from "react-native";
 import { RadioButton } from "react-native-paper";
 
 const MuutaTietoja = () => {
+  const navigation = useNavigation();
   const [personalInformation, setPersonalInformation] = useState({
     address: "",
     age: "",
@@ -93,6 +94,10 @@ const MuutaTietoja = () => {
         "Pahoittelut mutta jotain meni pieleen."
       );
     }
+  };
+
+  const handleBackToKoti = () => {
+    navigation.navigate("Koti");
   };
 
   return (
