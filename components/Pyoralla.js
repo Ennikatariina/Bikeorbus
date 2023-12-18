@@ -167,7 +167,11 @@ const Pyoralla = () => {
   }, [userLocation, destinationCoords]);
 
   if (!userLocation) {
-    return <Text>Sijaintitietoja ladataan...</Text>;
+    return (
+    <View style={styles.centered}> 
+       <Text>Sijaintitietoja ladataan...</Text>
+    </View> 
+    );
   }
 
 return (
