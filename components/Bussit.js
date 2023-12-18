@@ -3,12 +3,11 @@ import { View, Text, ActivityIndicator, FlatList, StyleSheet, Modal, KeyboardAvo
 import fetchGraphQLData from '../Api';
 
 function Bussit({ route }) {
-  const { stopId } = route.params; // gtfsId passed from HomeScreen
+  const { stopId } = route.params;
   const [stopDetails, setStopDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
 
-  // Fetching timetable
   useEffect(() => {
     const fetchTimetable = async () => {
       try {
@@ -44,15 +43,13 @@ function Bussit({ route }) {
     fetchTimetable();
   }, [stopId]);
 
-  // Function to format the time (assuming time is in seconds since midnight)
   const formatTime = (seconds) => {
     const date = new Date();
-    date.setHours(0, 0, 0, 0); // reset to midnight
+    date.setHours(0, 0, 0, 0);
     date.setSeconds(seconds);
     return date.toLocaleTimeString('fi-FI', { hour: '2-digit', minute: '2-digit' });
   };
 
-  // Rendering timetables
   const renderItem = ({ item }) => (
     <View style={styles.listItem}>
       <Text style={styles.headsign}>Päätepysäkki: {item.headsign}</Text>

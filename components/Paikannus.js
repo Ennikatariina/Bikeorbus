@@ -43,7 +43,7 @@ export default function Position() {
       <View >
         <View style={styles.container}>
         <Saa latitude={latitude} longitude={longitude} />
-        </View>
+       </View>
         <Saaennuste latitude={latitude} longitude={longitude}></Saaennuste>        
         <View style={styles.container}>
           <Tyomatkasuositus latitude={latitude} longitude={longitude}></Tyomatkasuositus>

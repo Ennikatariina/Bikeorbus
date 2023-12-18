@@ -16,7 +16,8 @@ export default function Saa({ latitude, longitude}) {
     'lat=' + latitude +
     '&lon=' + longitude +
     '&units=metric' +
-    '&appid=' + API_KEY;
+    '&appid=' + API_KEY +
+    '&lang=fi';
     fetch(url)
     .then(res => res.json())
     .then(
