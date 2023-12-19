@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, TextInput, Button } from 'react-native';
+import { Text, View, TextInput, Button, Keyboard } from 'react-native';
 import MapView, { Polyline } from 'react-native-maps';
 import polyline from '@mapbox/polyline';
 import { apiKey } from '../digitransitConfig.js';
@@ -49,6 +49,8 @@ const Pyoralla = ( {navigation } ) => {
       alert("Destination address is required");
       return;
     }
+
+    Keyboard.dismiss();
     const digitransitGeocodingUrl = `https://api.digitransit.fi/geocoding/v1/search?text=${encodeURIComponent(destinationAddress)}&size=1`;
     
     try {

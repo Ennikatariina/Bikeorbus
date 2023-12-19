@@ -16,7 +16,7 @@ import styles from "../style/styles";
 import { Alert } from "react-native";
 import { View } from "react-native";
 import { RadioButton } from "react-native-paper";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 const MuutaTietoja = () => {
   const navigation = useNavigation();
@@ -134,21 +134,44 @@ const MuutaTietoja = () => {
             value={lowestTemperature}
             onChangeText={setLowestTemperature}
           />
-          <Text>Haluatko pyöräillä sateella?</Text>
-          <Switch value={rain} onValueChange={setRain} />
-          <Text>Haluatko pyöräillä lumisateessa?</Text>
-          <Switch value={snowing} onValueChange={setSnowing} />
-          <Text>Haluatko ajaa liukkailla keleillä?</Text>
+          <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+            Haluatko pyöräillä sateella?
+          </Text>
+          <Switch
+            value={rain}
+            onValueChange={setRain}
+            trackColor={{ false: "#767577", true: "#a2e1fa" }}
+            color="#a2e1fa"
+            ios_background="#000000"
+          />
+          <Text style={{ fontSize: 15, marginTop: 10, fontWeight: "bold" }}>
+            Haluatko pyöräillä lumisateessa?
+          </Text>
+          <Switch
+            value={snowing}
+            onValueChange={setSnowing}
+            trackColor={{ false: "#767577", true: "#a2e1fa" }}
+            color="#a2e1fa"
+            ios_background="#000000"
+          />
+          <Text style={{ fontSize: 15, marginTop: 10, fontWeight: "bold" }}>
+            Haluatko ajaa liukkaalla kelillä
+          </Text>
           <Switch
             value={slipperyConditions}
             onValueChange={setSlipperyConditions}
+            trackColor={{ false: "#767577", true: "#a2e1fa" }}
+            color="#a2e1fa"
+            ios_background="#000000"
           />
-          <Text>Minkälaisessa tuulessa voit pyörällä?</Text>
+          <Text style={{ fontSize: 15, marginTop: 20, fontWeight: "bold" }}>
+            Minkälaisessa tuulessa voit pyörällä?
+          </Text>
           <RadioButton.Group
             onValueChange={(newValue) => setWind(newValue)}
             value={wind}
           >
-            <RadioButton.Item label="Tyyntä" value="Tyyntä" />
+            <RadioButton.Item label="Tyyntä" value="Tyyntä" color="black"/>
             <RadioButton.Item
               label="Kohtalainen tuuli"
               value="kohtalainen"
@@ -166,15 +189,6 @@ const MuutaTietoja = () => {
               color="purple"
             />
           </RadioButton.Group>
-
-          <Text>
-            Haluatko ajaa liukkaalla kelillä (eli kuin lämpötila on +4-0 C)
-          </Text>
-          <Switch
-            value={slipperyConditions}
-            onValueChange={slipperyOnToggleSwitch}
-          />
-
           <Pressable onPress={handleAddData} style={styles.pressable}>
             <Text style={styles.pressableText}>Tallenna tiedot!</Text>
           </Pressable>

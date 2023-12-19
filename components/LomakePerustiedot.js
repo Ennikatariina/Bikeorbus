@@ -42,7 +42,7 @@ export default LomakePerustiedot = ({ setModalVisible }) => {
   return (
     <SafeAreaView style={formStyles.container}>
       <ScrollView>
-        <Text style={formStyles.formText}>Perustiedot</Text>
+        <Text style={[formStyles.formText,{fontWeight:"bold", fontSize: 20}]}>Perustiedot</Text>
         <TextInput
           style={formStyles.input}
           placeholder="Osoite"
@@ -65,9 +65,9 @@ export default LomakePerustiedot = ({ setModalVisible }) => {
           value={weight}
           onChangeText={setweight}
         />
-        <Text style={formStyles.formText}>Sopivat sää olosuhteet</Text>
-        <Text style={formStyles.formText}>Pakkasraja</Text>
-        <Text>Aseta alin lämpötila jolla lähdet pyöräilemään</Text>
+        <Text style={[formStyles.formText,{fontWeight:"bold", fontSize: 20}]}>Sopivat sää olosuhteet</Text>
+        <Text style={[formStyles.formText,{fontWeight:"bold", fontSize: 15}]}>Pakkasraja</Text>
+        <Text style={[formStyles.formText,{fontSize: 15}]}>Aseta alin lämpötila jolla lähdet pyöräilemään</Text>
         <TextInput
           style={formStyles.input}
           placeholder="Syötä lämpötila"
@@ -75,22 +75,32 @@ export default LomakePerustiedot = ({ setModalVisible }) => {
           value={lowestTemperature}
           onChangeText={setLowestTemperature}
         />
-        <Text>Haluatko ajaa vesisateella</Text>
+        <Text style={{ fontSize: 15, marginTop: 20, fontWeight: "bold" }}>Haluatko ajaa vesisateella</Text>
         <Switch
           value={rain}
           onValueChange={rainOnToggleSwitch}
+          trackColor={{ false: "#767577", true: "#a2e1fa" }}
           color="#a2e1fa"
-          ios_background="#000000"
         />
-        <Text>Haluatko ajaa lumisateella</Text>
+        <Text style={{ fontSize: 15, marginTop: 20, fontWeight: "bold" }}>Haluatko ajaa lumisateella</Text>
         <Switch
           value={snowing}
           onValueChange={snowOnToggleSwitch}
+          trackColor={{ false: "#767577", true: "#a2e1fa" }}
           color="#a2e1fa"
-          ios_background="#000000"
+        />
+        <Text style={{ fontSize: 15, marginTop: 20, fontWeight: "bold" }}>
+          Haluatko ajaa liukkaalla kelillä
+        </Text>
+        <Text style={{ fontSize: 15 }}>(eli kun lämpötila on +4-(-1) C)</Text>
+        <Switch
+          value={slipperyConditions}
+          onValueChange={slipperyOnToggleSwitch}
+          trackColor={{ false: "#767577", true: "#a2e1fa" }}
+          color="#a2e1fa"
         />
 
-        <Text>Minkälaisessa tuulessa voit pyörällä?</Text>
+        <Text style={{ fontSize: 15, marginTop: 20, fontWeight: "bold" }}>Minkälaisessa tuulessa voit pyörällä?</Text>
         <RadioButton.Group
           onValueChange={(newValue) => setWind(newValue)}
           value={wind}
@@ -99,6 +109,7 @@ export default LomakePerustiedot = ({ setModalVisible }) => {
             label="Tyyntä"
             value="tyyntä"
             accessibilityLabel="Tyyntä, valitse tämä jos ei tunnu tuulta lainkaan"
+            color="black"
           />
           <RadioButton.Item
             label="Kohtalainen tuuli"
@@ -125,17 +136,6 @@ export default LomakePerustiedot = ({ setModalVisible }) => {
             accessibilityLabel="Myrsky tuuli, valitse tämä jos pyöräilyä ei suositella myrskytuulessa"
           />
         </RadioButton.Group>
-
-        <Text>
-          Haluatko ajaa liukkaalla kelillä (eli kuin lämpötila on +4-(-1) C)
-        </Text>
-        <Switch
-          value={slipperyConditions}
-          onValueChange={slipperyOnToggleSwitch}
-          color="#a2e1fa"
-          ios_background="#000000"
-        />
-
         <Pressable style={formStyles.pressable} onPress={handleAddData}>
           <Text style={formStyles.pressableText}>Tallenna</Text>
         </Pressable>
