@@ -58,8 +58,8 @@ export default Koti = ({ navigation }) => {
     })}
     >
     <Tab.Screen name="Tulos" component={Tulos}   />  
-    <Tab.Screen name="Bussilla" component={Bussilla}  />
     <Tab.Screen name="Pyörällä" component={Pyoralla}  />
+    <Tab.Screen name="Bussilla" component={Bussilla}  />
     <Tab.Screen name="Asetukset" component={Asetukset}  />
   </Tab.Navigator>
   );
